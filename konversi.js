@@ -374,13 +374,14 @@ function hitungKonversi(besaran) {
         
         const konversi = konversiData[besaran];
         
-        
         const nilaiDasar = nilai * konversi[satuanAsal];
-        const hasil = nilaiDasar / konversi[satuanTujuan];
+        let hasil = nilaiDasar / konversi[satuanTujuan];
         
+        if (Math.abs(hasil) < 9e-99) {
+            hasil = 0;
+        }
         
-        const hasilFormatted = parseFloat(hasil.toFixed(10)).toString(); 
-        
+        const hasilFormatted = parseFloat(hasil.toPrecision(15)).toString();
         
         const labelAsal = satuanAsal.charAt(0).toUpperCase() + satuanAsal.slice(1);
         const labelTujuan = satuanTujuan.charAt(0).toUpperCase() + satuanTujuan.slice(1);

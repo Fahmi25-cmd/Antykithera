@@ -131,25 +131,55 @@ function getSifatLarutan(pH) {
     }
 }
 
+function handleEnterKey(event) {
+    if (event.key === 'Enter') {
+        const form = document.getElementById('kalkulator-form');
+        if (!form) return;
+
+        if (event.target.tagName === 'INPUT' && event.target.type !== 'submit') {
+            event.preventDefault();
+
+            const inputs = Array.from(form.querySelectorAll('input[type="number"], input[type="text"], select'));
+            const currentIndex = inputs.indexOf(event.target);
+
+            if (currentIndex !== -1 && currentIndex < inputs.length - 1) {
+                inputs[currentIndex + 1].focus();
+                if (inputs[currentIndex + 1].select) {
+                    inputs[currentIndex + 1].select(); 
+                }
+            } else {
+                form.dispatchEvent(new Event('submit'));
+            }
+        } else {
+            event.preventDefault();
+            form.dispatchEvent(new Event('submit'));
+        }
+    }
+}
+
 function tampilkanKalkulator() {
     const topik = document.getElementById('pilih-topik').value;
     const kalkulatorArea = document.getElementById('kalkulator-area');
     kalkulatorArea.innerHTML = '';
+
     document.removeEventListener('keydown', handleEnterKey);
+
     if (topik && petaTopikKePerhitungan.hasOwnProperty(topik)) {
         const daftarPerhitungan = petaTopikKePerhitungan[topik];
         const formDiv = document.createElement('div');
         formDiv.id = 'form-kalkulasi';
+        
         const hasilDiv = document.createElement('div');
         hasilDiv.id = 'hasil-kalkulasi';
         hasilDiv.className = 'referensi-bangun-datar';
         hasilDiv.style.marginTop = '20px';
+
         if (daftarPerhitungan.length === 1) {
+            kalkulatorArea.appendChild(document.createElement('hr'));
             kalkulatorArea.appendChild(formDiv);
             kalkulatorArea.appendChild(hasilDiv);
             const parameter = daftarPerhitungan[0].nilai;
             buatFormKalkulasi(topik, parameter);
-            document.addEventListener('keydown', handleEnterKey);
         } else {
             const labelParam = document.createElement('label');
             labelParam.setAttribute('for', 'pilih-parameter');
@@ -157,6 +187,7 @@ function tampilkanKalkulator() {
             labelParam.style.display = 'block';
             labelParam.style.marginTop = '15px';
             labelParam.style.fontWeight = 'bold';
+            
             const selectParam = document.createElement('select');
             selectParam.id = 'pilih-parameter';
             selectParam.style.width = '100%';
@@ -165,57 +196,65 @@ function tampilkanKalkulator() {
             selectParam.style.border = '1px solid #ccc';
             selectParam.style.borderRadius = '4px';
             selectParam.style.marginBottom = '15px';
+            
             const defaultOpt = document.createElement('option');
             defaultOpt.value = '';
             defaultOpt.textContent = '-- Pilih Perhitungan Spesifik --';
             selectParam.appendChild(defaultOpt);
+            
             daftarPerhitungan.forEach(calc => {
                 const opt = document.createElement('option');
                 opt.value = calc.nilai;
                 opt.textContent = calc.teks;
                 selectParam.appendChild(opt);
             });
+            
             kalkulatorArea.appendChild(labelParam);
             kalkulatorArea.appendChild(selectParam);
+            kalkulatorArea.appendChild(document.createElement('hr'));
             kalkulatorArea.appendChild(formDiv);
             kalkulatorArea.appendChild(hasilDiv);
+            
             selectParam.onchange = () => {
                 const parameter = selectParam.value;
                 if (parameter) {
                     buatFormKalkulasi(topik, parameter);
-                    document.addEventListener('keydown', handleEnterKey);
                 } else {
                     formDiv.innerHTML = '';
                     hasilDiv.innerHTML = '';
-                    document.removeEventListener('keydown', handleEnterKey);
                 }
             };
         }
+        document.addEventListener('keydown', handleEnterKey);
     } else if (topik) {
-        kalkulatorArea.innerHTML = `<p class="error" style="color: red; font-weight: bold;">Opsi perhitungan untuk topik ini ('${topik}') belum dikonfigurasi di 'petaTopikKePerhitungan'.</p><p>Periksa 'value' di HTML dan samakan dengan kunci di objek 'petaTopikKePerhitungan' di file JS.</p>`;
+        kalkulatorArea.innerHTML = `<p style="color: red; font-weight: bold;">Opsi perhitungan untuk topik ini ('${topik}') belum dikonfigurasi di 'petaTopikKePerhitungan'.</p><p>Periksa 'value' di HTML dan samakan dengan kunci di objek 'petaTopikKePerhitungan' di file JS.</p>`;
     }
 }
+
 
 function buatFormKalkulasi(topik, parameter) {
     const formDiv = document.getElementById('form-kalkulasi');
     const hasilDiv = document.getElementById('hasil-kalkulasi');
+    
     formDiv.innerHTML = '';
     hasilDiv.innerHTML = '';
     if (!parameter) return;
+
     let inputs = {};
     let satuanHasil = '';
     let fungsiHitung = '';
     let namaVariabel = '';
     let catatan = '';
+
     switch (parameter) {
         case 'ph-larutan-asam':
-            inputs = { Ma: 'Molaritas Asam Kuat (M)', valensi: 'Valensi Asam (jumlah H⁺, e.g., 1 for HCl, 2 for H₂SO₄)' };
+            inputs = { Ma: 'Molaritas Asam Kuat (M)', valensi: 'Valensi Asam (e.g., 1 for HCl, 2 for H₂SO₄)' };
             satuanHasil = 'pH';
             fungsiHitung = 'hitungPHAsamKuat(Ma, valensi, "pH")';
             namaVariabel = 'pH';
             break;
         case 'ph-larutan-basa':
-            inputs = { Mb: 'Molaritas Basa Kuat (M)', valensi: 'Valensi Basa (jumlah OH⁻, e.g., 1 for NaOH, 2 for Ca(OH)₂)' };
+            inputs = { Mb: 'Molaritas Basa Kuat (M)', valensi: 'Valensi Basa (e.g., 1 for NaOH, 2 for Ca(OH)₂)' };
             satuanHasil = 'pH';
             fungsiHitung = 'hitungPHBasaKuat(Mb, valensi, "pH")';
             namaVariabel = 'pH';
@@ -286,14 +325,14 @@ function buatFormKalkulasi(topik, parameter) {
             namaVariabel = 'pKb';
             break;
         case 'ph-buffer-asam':
-            inputs = { pKa: 'Nilai pKa', A: 'Konsentrasi Basa Konjugasi ([A⁻] atau [Garam], M)', HA: 'Konsentrasi Asam Lemah ([HA], M)' };
+            inputs = { pKa: 'Nilai pKa', A: 'Konsentrasi Basa Konjugasi ([A⁻], M)', HA: 'Konsentrasi Asam Lemah ([HA], M)' };
             satuanHasil = 'pH';
             fungsiHitung = 'hitungPHBufferAsam(pKa, A, HA, "pH")';
             namaVariabel = 'pH';
             catatan = 'Rumus Henderson–Hasselbalch: pH = pKa + log([A⁻]/[HA]).';
             break;
         case 'ph-buffer-basa':
-            inputs = { pKb: 'Nilai pKb', BH: 'Konsentrasi Asam Konjugasi ([BH⁺] atau [Garam], M)', BOH: 'Konsentrasi Basa Lemah ([BOH], M)' };
+            inputs = { pKb: 'Nilai pKb', BH: 'Konsentrasi Asam Konjugasi ([BH⁺], M)', BOH: 'Konsentrasi Basa Lemah ([BOH], M)' };
             satuanHasil = 'pH';
             fungsiHitung = 'hitungPHBufferBasa(pKb, BH, BOH, "pH")';
             namaVariabel = 'pH';
@@ -340,11 +379,11 @@ function buatFormKalkulasi(topik, parameter) {
             namaVariabel = 'Persentase Ionisasi';
             break;
         case 'ph-campuran-larutan':
-            inputs = { Ma: 'Molaritas Asam (M)', Va: 'Volume Asam (L)', Mb: 'Molaritas Basa (M)', Vb: 'Volume Basa (L)', valensi_a: 'Valensi Asam', valensi_b: 'Valensi Basa', jenis_asam: 'Jenis Asam (Kuat/Lemah)', jenis_basa: 'Jenis Basa (Kuat/Lemah)', Ka: 'Ka Asam (jika lemah, 0 jika kuat)', Kb: 'Kb Basa (jika lemah, 0 jika kuat)' };
+            inputs = { Ma: 'Molaritas Asam (M)', Va: 'Volume Asam (L)', Mb: 'Molaritas Basa (M)', Vb: 'Volume Basa (L)', valensi_a: 'Valensi Asam', valensi_b: 'Valensi Basa', jenis_asam: 'Jenis Asam (Kuat/Lemah)', jenis_basa: 'Jenis Basa (Kuat/Lemah)', Ka: 'Ka Asam (0 jika kuat)', Kb: 'Kb Basa (0 jika kuat)' };
             satuanHasil = 'pH';
             fungsiHitung = 'hitungPHCampuran(Ma, Va, Mb, Vb, valensi_a, valensi_b, jenis_asam, jenis_basa, Ka, Kb, "pH")';
             namaVariabel = 'pH Campuran';
-            catatan = 'Asumsi titrasi (netralisasi) yang menghasilkan pH, buffer, atau hidrolisis. Masukkan 0 untuk Ka/Kb jika asam/basa Kuat.';
+            catatan = 'Asumsi titrasi. Masukkan 0 untuk Ka/Kb jika Kuat.';
             break;
         case 'titrasi-asam-kuat-basa-kuat':
             inputs = { Ma: 'Molaritas Asam (M)', Va: 'Volume Asam (L)', Mb: 'Molaritas Basa (M)', Vb: 'Volume Basa (L)', valensi_a: 'Valensi Asam', valensi_b: 'Valensi Basa' };
@@ -371,7 +410,7 @@ function buatFormKalkulasi(topik, parameter) {
             namaVariabel = 'Volume Ekivalen';
             break;
         case 'ph-titik-ekivalen':
-            inputs = { Ma: 'Molaritas Asam (M)', Va: 'Volume Asam (L)', Mb: 'Molaritas Basa (M)', valensi_a: 'Valensi Asam', valensi_b: 'Valensi Basa', jenis_asam: 'Jenis Asam (Kuat/Lemah)', jenis_basa: 'Jenis Basa (Kuat/Lemah)', Ka: 'Ka Asam (jika lemah, 0 jika kuat)', Kb: 'Kb Basa (jika lemah, 0 jika kuat)' };
+            inputs = { Ma: 'Molaritas Asam (M)', Va: 'Volume Asam (L)', Mb: 'Molaritas Basa (M)', valensi_a: 'Valensi Asam', valensi_b: 'Valensi Basa', jenis_asam: 'Jenis Asam (Kuat/Lemah)', jenis_basa: 'Jenis Basa (Kuat/Lemah)', Ka: 'Ka Asam (0 jika kuat)', Kb: 'Kb Basa (0 jika kuat)' };
             satuanHasil = 'pH';
             fungsiHitung = 'hitungPHTitikEkivalen(Ma, Va, Mb, valensi_a, valensi_b, jenis_asam, jenis_basa, Ka, Kb, "pH_eq")';
             namaVariabel = 'pH Ekivalen';
@@ -458,16 +497,231 @@ function buatFormKalkulasi(topik, parameter) {
             formDiv.innerHTML = '<p class="error">Parameter tidak dikenali. Silakan pilih ulang.</p>';
             return;
     }
+
+    configPerhitungan = { fungsiHitung, satuanHasil, namaVariabel, parameter, catatan };
+
+    const form = document.createElement('form');
+    form.id = 'kalkulator-form';
+    form.onsubmit = (e) => { e.preventDefault(); prosesPerhitungan(); };
+
+    for (const [key, labelText] of Object.entries(inputs)) {
+        const label = document.createElement('label');
+        label.setAttribute('for', key);
+        label.textContent = labelText + ': ';
+
+        let input;
+
+        if (key === 'jenis_asam' || key === 'jenis_basa') {
+            input = document.createElement('select');
+            input.id = key;
+            input.name = key;
+            
+            const optDefault = document.createElement('option');
+            optDefault.value = '';
+            optDefault.textContent = '--Pilih Jenis--';
+            
+            const optKuat = document.createElement('option');
+            optKuat.value = 'Kuat';
+            optKuat.textContent = 'Kuat';
+
+            const optLemah = document.createElement('option');
+            optLemah.value = 'Lemah';
+            optLemah.textContent = 'Lemah';
+            
+            input.appendChild(optDefault);
+            input.appendChild(optKuat);
+            input.appendChild(optLemah);
+            input.required = true;
+            
+            input.style.width = '100%';
+            input.style.padding = '8px';
+            input.style.boxSizing = 'border-box';
+            input.style.marginBottom = '10px';
+
+        } else {
+            input = document.createElement('input');
+            input.type = 'number';
+            input.step = 'any';
+            input.id = key;
+            input.name = key;
+            input.required = true;
+
+            input.style.width = '100%';
+            input.style.padding = '8px';
+            input.style.boxSizing = 'border-box';
+            input.style.marginBottom = '10px';
+            
+            if (key === 'Ka' || key === 'Kb') {
+                input.required = false; 
+                input.placeholder = "0 jika kuat";
+            }
+        }
+
+        form.appendChild(label);
+        form.appendChild(input);
+        form.appendChild(document.createElement('br'));
+    }
+
+    const submitBtn = document.createElement('button');
+    submitBtn.type = 'submit';
+    submitBtn.textContent = 'Hitung';
+    submitBtn.style.padding = '10px 15px';
+    submitBtn.style.backgroundColor = '#008cba';
+    submitBtn.style.color = 'white';
+    submitBtn.style.border = 'none';
+    submitBtn.style.borderRadius = '4px';
+    submitBtn.style.cursor = 'pointer';
+    form.appendChild(submitBtn);
+
+    if (catatan) {
+        const note = document.createElement('p');
+        note.textContent = `Catatan: ${catatan}`;
+        note.style.fontSize = '0.9em';
+        note.style.fontStyle = 'italic';
+        note.style.marginTop = '10px';
+        form.appendChild(note);
+    }
+
+    formDiv.appendChild(form);
 }
+
+function prosesPerhitungan() {
+    const form = document.getElementById('kalkulator-form');
+    const formData = new FormData(form);
+    const nilaiInput = {};
+    let allInputsValid = true;
+
+    const { fungsiHitung, satuanHasil, namaVariabel, parameter, catatan } = configPerhitungan;
+
+    for (const [key, value] of formData.entries()) {
+        const inputElement = document.getElementById(key);
+        if (!inputElement) continue;
+
+        let parsedValue;
+        const trimmedValue = value.trim();
+
+        if (inputElement.type === 'number') {
+            parsedValue = parseFloat(trimmedValue);
+            if (isNaN(parsedValue)) {
+                if (inputElement.required) {
+                    allInputsValid = false;
+                    break;
+                } else {
+                    parsedValue = 0; 
+                }
+            }
+        } else { 
+            parsedValue = trimmedValue;
+            if (!parsedValue && inputElement.required) {
+                allInputsValid = false;
+                break;
+            }
+        }
+        nilaiInput[key] = parsedValue;
+    }
+
+    const hasilDiv = document.getElementById('hasil-kalkulasi');
+    hasilDiv.innerHTML = '';
+    hasilDiv.classList.remove('error');
+
+    if (!allInputsValid) {
+        hasilDiv.classList.add('error');
+        hasilDiv.innerHTML = `<h3>⚠️ Error Perhitungan!</h3><p>Terjadi kesalahan saat memproses data:</p>
+            <p style="font-weight: bold;">Mohon isi semua kolom input yang diperlukan dengan data yang valid!</p>
+            <p>Pastikan semua variabel sudah terisi dengan data yang valid dan sesuai dengan konteks rumus yang dipilih.</p>`;
+        return;
+    }
+
+    try {
+        const argsMatch = fungsiHitung.match(/\((.*?)\)/);
+        let finalFunctionCall = fungsiHitung;
+
+        if (argsMatch && argsMatch[1]) {
+            const argNames = argsMatch[1].split(',').map(arg => arg.trim());
+
+            const argValues = argNames.map(name => {
+                if (name.startsWith('"') && name.endsWith('"')) {
+                    return name;
+                }
+                if (name === 'null') {
+                    return name;
+                }
+                if (nilaiInput.hasOwnProperty(name)) {
+                    const val = nilaiInput[name];
+                    return typeof val === 'string' ? `"${val}"` : JSON.stringify(val);
+                }
+                
+                if (name === 'Ka' && !nilaiInput.hasOwnProperty('Ka')) return '0';
+                if (name === 'Kb' && !nilaiInput.hasOwnProperty('Kb')) return '0';
+
+                return 'null'; 
+            });
+
+            const funcName = fungsiHitung.substring(0, fungsiHitung.indexOf('('));
+            finalFunctionCall = `${funcName}(${argValues.join(', ')})`;
+        }
+
+        let hasil;
+        hasil = eval(finalFunctionCall);
+
+        if (typeof hasil === 'string' && hasil.startsWith('Error:')) {
+            throw new Error(hasil.replace('Error: ', ''));
+        }
+
+        if (typeof hasil === 'number' && !isFinite(hasil)) {
+            throw new Error('Hasil perhitungan tidak valid (NaN atau Infinity). Periksa kembali input Anda.');
+        }
+
+        let formatted_fx = hasil;
+        if (typeof hasil === 'number') {
+            if (Math.abs(hasil) < 1e-3 && hasil !== 0) {
+                formatted_fx = hasil.toExponential(4);
+            } else {
+                formatted_fx = hasil.toFixed(3).replace(/\.?0+$/, '');
+                if (formatted_fx === '-0') formatted_fx = '0';
+            }
+        }
+
+        let sifat = '';
+        if (namaVariabel.toLowerCase().includes('ph') && typeof hasil === 'number') {
+            sifat = ` (Larutan bersifat ${getSifatLarutan(hasil)})`;
+        }
+
+        hasilDiv.innerHTML = `
+            <h2>Hasil Perhitungan</h2>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                <tr style="background-color: #0b2c66; color: white;">
+                    <th style="border: 1px solid #ccc; padding: 10px; text-align: left;">Parameter</th>
+                    <th style="border: 1px solid #ccc; padding: 10px; text-align: left;">Nilai Hasil (Satuan SI)</th>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ccc; padding: 10px;">${namaVariabel}</td>
+                    <td style="border: 1px solid #ccc; padding: 10px; white-space: pre-wrap;">${formatted_fx} ${satuanHasil}${sifat}</td>
+                </tr>
+            </table>
+        `;
+
+        form.reset();
+
+    } catch (e) {
+        hasilDiv.classList.add('error');
+        hasilDiv.innerHTML = `<h3>⚠️ Error Perhitungan!</h3><p>Terjadi kesalahan saat memproses data:</p>
+            <p style="font-weight: bold;">${e.message}</p>
+            <p>Pastikan semua variabel sudah terisi dengan data yang valid dan sesuai dengan konteks rumus yang dipilih.</p>`;
+    }
+}
+
 
 function hitungPHDasar(H, target) {
     if (target === "pH") {
+        if (H <= 0) throw new Error("Konsentrasi [H⁺] harus positif.");
         return -Math.log10(H);
     }
     throw new Error('Target tidak valid');
 }
 
 function hitungPOHDasar(OH, target) {
+    if (OH <= 0) throw new Error("Konsentrasi [OH⁻] harus positif.");
     if (target === "pOH") {
         return -Math.log10(OH);
     } else if (target === "pH") {
@@ -486,6 +740,7 @@ function hitungHubunganPHPOH(pH, target) {
 
 function hitungPHAsamKuat(Ma, valensi, target) {
     if (target === "pH") {
+        if (Ma <= 0 || valensi <= 0) throw new Error("Molaritas dan valensi harus positif.");
         const H = Ma * valensi;
         return hitungPHDasar(H, "pH");
     }
@@ -494,6 +749,7 @@ function hitungPHAsamKuat(Ma, valensi, target) {
 
 function hitungPHBasaKuat(Mb, valensi, target) {
     if (target === "pH") {
+        if (Mb <= 0 || valensi <= 0) throw new Error("Molaritas dan valensi harus positif.");
         const OH = Mb * valensi;
         return hitungPOHDasar(OH, "pH");
     }
@@ -502,6 +758,8 @@ function hitungPHBasaKuat(Mb, valensi, target) {
 
 function hitungPHAsamLemah(Ma, Ka, target) {
     if (target === "pH") {
+        if (Ma <= 0) throw new Error("Molaritas asam harus positif.");
+        if (Ka <= 0) throw new Error("Ka harus positif untuk asam lemah.");
         const H = Math.sqrt(Ka * Ma);
         return hitungPHDasar(H, "pH");
     }
@@ -510,6 +768,8 @@ function hitungPHAsamLemah(Ma, Ka, target) {
 
 function hitungPHBasaLemah(Mb, Kb, target) {
     if (target === "pH") {
+        if (Mb <= 0) throw new Error("Molaritas basa harus positif.");
+        if (Kb <= 0) throw new Error("Kb harus positif untuk basa lemah.");
         const OH = Math.sqrt(Kb * Mb);
         return hitungPOHDasar(OH, "pH");
     }
@@ -518,6 +778,7 @@ function hitungPHBasaLemah(Mb, Kb, target) {
 
 function hitungHubunganKaKb(Ka, target) {
     if (target === "Kb") {
+        if (Ka <= 0) throw new Error("Ka harus positif.");
         return Kw / Ka;
     }
     throw new Error('Target tidak valid');
@@ -532,6 +793,7 @@ function hitungHubunganPKaPKb(pKa, target) {
 
 function hitungKwAir(H, OH, target) {
     if (target === "Kw") {
+        if (H <= 0 || OH <= 0) throw new Error("Konsentrasi ion harus positif.");
         return H * OH;
     }
     throw new Error('Target tidak valid');
@@ -540,7 +802,9 @@ function hitungKwAir(H, OH, target) {
 function hitungKaAsamLemah(H, Ma, target) {
     if (target === "Ka") {
         if (Ma <= 0) throw new Error("Molaritas asam ([HA]) harus positif.");
-        return (H * H) / Ma;
+        if (H <= 0) throw new Error("[H⁺] harus positif.");
+        if (H > Ma) throw new Error("[H⁺] tidak bisa lebih besar dari Molaritas Asam Awal.");
+        return (H * H) / (Ma - H); 
     }
     throw new Error('Target tidak valid');
 }
@@ -548,7 +812,9 @@ function hitungKaAsamLemah(H, Ma, target) {
 function hitungKbBasaLemah(OH, Mb, target) {
     if (target === "Kb") {
         if (Mb <= 0) throw new Error("Molaritas basa ([B]) harus positif.");
-        return (OH * OH) / Mb;
+        if (OH <= 0) throw new Error("[OH⁻] harus positif.");
+        if (OH > Mb) throw new Error("[OH⁻] tidak bisa lebih besar dari Molaritas Basa Awal.");
+        return (OH * OH) / (Mb - OH);
     }
     throw new Error('Target tidak valid');
 }
@@ -556,6 +822,7 @@ function hitungKbBasaLemah(OH, Mb, target) {
 function hitungPHBufferAsam(pKa, A, HA, target) {
     if (target === "pH") {
         if (HA <= 0) throw new Error("Konsentrasi asam lemah ([HA]) harus positif.");
+        if (A <= 0) throw new Error("Konsentrasi basa konjugasi ([A⁻]) harus positif.");
         return pKa + Math.log10(A / HA);
     }
     throw new Error('Target tidak valid');
@@ -564,6 +831,7 @@ function hitungPHBufferAsam(pKa, A, HA, target) {
 function hitungPHBufferBasa(pKb, BH, BOH, target) {
     if (target === "pH") {
         if (BOH <= 0) throw new Error("Konsentrasi basa lemah ([BOH]) harus positif.");
+        if (BH <= 0) throw new Error("Konsentrasi asam konjugasi ([BH⁺]) harus positif.");
         const pOH = pKb + Math.log10(BH / BOH);
         return pKw - pOH;
     }
@@ -573,6 +841,7 @@ function hitungPHBufferBasa(pKb, BH, BOH, target) {
 function hitungDerajatIonisasi(H, C, target) {
     if (target === "alpha") {
         if (C === 0) throw new Error("Molaritas awal (C) tidak boleh nol.");
+        if (H > C) throw new Error("[H⁺] tidak bisa lebih besar dari Molaritas Awal.");
         return H / C;
     }
     throw new Error('Target tidak valid');
@@ -590,11 +859,16 @@ function hitungPHCampuran(Ma, Va, Mb, Vb, valensi_a, valensi_b, jenis_asam, jeni
     if (target !== "pH") throw new Error('Target tidak valid');
     if (jenis_asam === 'Lemah' && Ka <= 0) throw new Error("Ka untuk Asam Lemah harus positif.");
     if (jenis_basa === 'Lemah' && Kb <= 0) throw new Error("Kb untuk Basa Lemah harus positif.");
+    
     if (jenis_asam === 'Kuat') Ka = null;
     if (jenis_basa === 'Kuat') Kb = null;
+
     const mol_H_equiv = Ma * Va * valensi_a;
     const mol_OH_equiv = Mb * Vb * valensi_b;
     const V_total = Va + Vb;
+
+    if (V_total <= 0) throw new Error("Total volume harus positif.");
+
     if (jenis_asam === 'Kuat' && jenis_basa === 'Kuat') {
         if (mol_H_equiv > mol_OH_equiv) {
             const mol_H_sisa = mol_H_equiv - mol_OH_equiv;
@@ -605,84 +879,69 @@ function hitungPHCampuran(Ma, Va, Mb, Vb, valensi_a, valensi_b, jenis_asam, jeni
             const OH = mol_OH_sisa / V_total;
             return hitungPOHDasar(OH, "pH");
         } else {
-            return 7.0;
+            return 7.0; 
         }
-    } else if (jenis_asam === 'Lemah' && jenis_basa === 'Kuat') {
-        if (mol_H_equiv > mol_OH_equiv) {
-            const mol_garam = mol_OH_equiv;
-            const mol_HA_sisa = mol_H_equiv - mol_OH_equiv;
+    } 
+    else if (jenis_asam === 'Lemah' && jenis_basa === 'Kuat') {
+        const mol_HA_awal = Ma * Va; 
+        const mol_OH_awal = Mb * Vb * valensi_b; 
+
+        if (mol_HA_awal > mol_OH_awal) {
+            const mol_HA_sisa = mol_HA_awal - mol_OH_awal;
+            const mol_A_terbentuk = mol_OH_awal; 
             const HA = mol_HA_sisa / V_total;
-            const A = mol_garam / V_total;
+            const A = mol_A_terbentuk / V_total;
             const pKa = -Math.log10(Ka);
             return pKa + Math.log10(A / HA);
-        } else if (mol_OH_equiv > mol_H_equiv) {
-            const mol_OH_sisa = mol_OH_equiv - mol_H_equiv;
+        } else if (mol_OH_awal > mol_HA_awal) {
+            const mol_OH_sisa = mol_OH_awal - mol_HA_awal;
             const OH = mol_OH_sisa / V_total;
             return hitungPOHDasar(OH, "pH");
         } else {
-            const C_garam = mol_OH_equiv / V_total;
+            const C_garam = mol_HA_awal / V_total; 
             const Kb_hidrolisis = Kw / Ka;
             const OH = Math.sqrt(Kb_hidrolisis * C_garam);
             return hitungPOHDasar(OH, "pH");
         }
-    } else if (jenis_asam === 'Kuat' && jenis_basa === 'Lemah') {
-        if (mol_H_equiv > mol_OH_equiv) {
-            const mol_H_sisa = mol_H_equiv - mol_OH_equiv;
+    } 
+    else if (jenis_asam === 'Kuat' && jenis_basa === 'Lemah') {
+        const mol_H_awal = Ma * Va * valensi_a; 
+        const mol_BOH_awal = Mb * Vb; 
+
+        if (mol_H_awal > mol_BOH_awal) {
+            const mol_H_sisa = mol_H_awal - mol_BOH_awal;
             const H = mol_H_sisa / V_total;
             return hitungPHDasar(H, "pH");
-        } else if (mol_OH_equiv > mol_H_equiv) {
-            const mol_basa_awal = Mb * Vb;
-            const mol_basa_beraksi = mol_H_equiv / valensi_b;
-            const mol_basa_sisa = mol_basa_awal - mol_basa_beraksi;
-            const Mb_sisa = mol_basa_sisa / V_total;
-            return hitungPHBasaLemah(Mb_sisa, Kb, "pH");
+        } else if (mol_BOH_awal > mol_H_awal) {
+            const mol_BOH_sisa = mol_BOH_awal - mol_H_awal;
+            const mol_BH_terbentuk = mol_H_awal; 
+            const BOH = mol_BOH_sisa / V_total;
+            const BH = mol_BH_terbentuk / V_total;
+            const pKb = -Math.log10(Kb);
+            return hitungPHBufferBasa(pKb, BH, BOH, "pH");
         } else {
-            const mol_garam = Mb * Vb;
-            const C_garam = mol_garam / V_total;
+            const C_garam = mol_BOH_awal / V_total; 
             const Ka_hidrolisis = Kw / Kb;
             const H = Math.sqrt(Ka_hidrolisis * C_garam);
             return hitungPHDasar(H, "pH");
         }
-    } else if (jenis_asam === 'Lemah' && jenis_basa === 'Lemah') {
-        if (Ka <= 0 || Kb <= 0) throw new Error("Ka dan Kb untuk Asam/Basa Lemah harus positif.");
-        const pKa = -Math.log10(Ka);
-        const pKb = -Math.log10(Kb);
-        const mol_H_equiv = Ma * Va * valensi_a;
-        const mol_OH_equiv = Mb * Vb * valensi_b;
-        const V_total = Va + Vb;
-        if (mol_H_equiv > mol_OH_equiv) {
-            const mol_garam = mol_OH_equiv;
-            const mol_HA_sisa = mol_H_equiv - mol_OH_equiv;
-            if (mol_HA_sisa <= 0) throw new Error("Perhitungan sisa tidak valid.");
-            const HA = mol_HA_sisa / V_total;
-            const A = mol_garam / V_total;
-            return pKa + Math.log10(A / HA);
-        } else if (mol_OH_equiv > mol_H_equiv) {
-            const mol_garam = mol_H_equiv;
-            const mol_BOH_sisa = mol_OH_equiv - mol_H_equiv;
-            if (mol_BOH_sisa <= 0) throw new Error("Perhitungan sisa tidak valid.");
-            const BOH = mol_BOH_sisa / V_total;
-            const BH = mol_garam / V_total;
-            const pOH = pKb + Math.log10(BH / BOH);
-            return pKw - pOH;
+    } 
+    else if (jenis_asam === 'Lemah' && jenis_basa === 'Lemah') {
+        const mol_HA_awal = Ma * Va;
+        const mol_BOH_awal = Mb * Vb;
+        
+        if (Math.abs(mol_HA_awal - mol_BOH_awal) < 1e-9) { 
+             const pKa = -Math.log10(Ka);
+             const pKb = -Math.log10(Kb);
+             return 0.5 * (pKw + pKa - pKb);
         } else {
-            const mol_garam = mol_H_equiv;
-            const C_garam = mol_garam / V_total;
-            if (C_garam <= 0) throw new Error("Konsentrasi garam tidak valid.");
-            const Kb_A = Kw / Ka;
-            const Ka_BH = Kw / Kb;
-            if (Kb_A > Ka_BH) {
-                const OH = Math.sqrt(Kb_A * C_garam);
-                return hitungPOHDasar(OH, "pH");
-            } else {
-                const H = Math.sqrt(Ka_BH * C_garam);
-                return hitungPHDasar(H, "pH");
-            }
+             throw new Error('Perhitungan campuran Asam Lemah vs Basa Lemah (selain titik ekivalen) tidak didukung saat ini.');
         }
     } else {
-        throw new Error('Kombinasi jenis asam/basa tidak didukung.');
+        throw new Error('Kombinasi jenis asam/basa tidak didukung atau input tidak valid.');
     }
 }
+
 
 function hitungPHTitrasiKuatKuat(Ma, Va, Mb, Vb, valensi_a, valensi_b, target) {
     if (target !== "pH") throw new Error('Target tidak valid');
@@ -690,6 +949,7 @@ function hitungPHTitrasiKuatKuat(Ma, Va, Mb, Vb, valensi_a, valensi_b, target) {
     const mol_H = Ma * Va * valensi_a;
     const mol_OH = Mb * Vb * valensi_b;
     const V_total = Va + Vb;
+    if (V_total <= 0) throw new Error("Total volume harus positif.");
     if (mol_OH < mol_H) {
         const H = (mol_H - mol_OH) / V_total;
         return hitungPHDasar(H, "pH");
@@ -704,24 +964,26 @@ function hitungPHTitrasiKuatKuat(Ma, Va, Mb, Vb, valensi_a, valensi_b, target) {
 function hitungPHTitrasiLemahKuat(Ma, Va, Mb, Vb, valensi_a, valensi_b, Ka, target) {
     if (target !== "pH") throw new Error('Target tidak valid');
     if (Ka <= 0) throw new Error("Ka harus positif untuk asam lemah.");
-    const pKa = -Math.log10(Ka);
-    const mol_H_eq = Ma * Va * valensi_a;
+    
+    const mol_HA_awal = Ma * Va; 
     const mol_OH = Mb * Vb * valensi_b;
     const V_total = Va + Vb;
-    const f = mol_OH / mol_H_eq;
-    if (f < 1) {
-        const mol_HA_sisa = Ma * Va * (1 - f);
-        const mol_A_sisa = Ma * Va * f;
-        const HA = mol_HA_sisa / V_total;
-        const A_minus = mol_A_sisa / V_total;
-        return pKa + Math.log10(A_minus / HA);
-    } else if (f > 1) {
-        const Vb_eq = mol_H_eq / (Mb * valensi_b);
-        const mol_OH_sisa = Mb * (Vb - Vb_eq);
+    if (V_total <= 0) throw new Error("Total volume harus positif.");
+
+    const pKa = -Math.log10(Ka);
+
+    if (mol_OH === 0) { 
+        return hitungPHAsamLemah(Ma, Ka, "pH");
+    } else if (mol_OH < mol_HA_awal) { 
+        const mol_HA_sisa = mol_HA_awal - mol_OH;
+        const mol_A_terbentuk = mol_OH;
+        return pKa + Math.log10(mol_A_terbentuk / mol_HA_sisa);
+    } else if (mol_OH > mol_HA_awal) { 
+        const mol_OH_sisa = mol_OH - mol_HA_awal;
         const OH = mol_OH_sisa / V_total;
         return hitungPOHDasar(OH, "pH");
-    } else {
-        const C_salt = Ma * Va / V_total;
+    } else { 
+        const C_salt = mol_HA_awal / V_total;
         const Kb_salt = Kw / Ka;
         const OH = Math.sqrt(Kb_salt * C_salt);
         return hitungPOHDasar(OH, "pH");
@@ -731,21 +993,27 @@ function hitungPHTitrasiLemahKuat(Ma, Va, Mb, Vb, valensi_a, valensi_b, Ka, targ
 function hitungPHTitrasiKuatLemah(Ma, Va, Mb, Vb, valensi_a, valensi_b, Kb, target) {
     if (target !== "pH") throw new Error('Target tidak valid');
     if (Kb <= 0) throw new Error("Kb harus positif untuk basa lemah.");
-    const pKb = -Math.log10(Kb);
-    const mol_OH_eq = Mb * Vb * valensi_b;
+
+    const mol_BOH_awal = Mb * Vb; 
     const mol_H = Ma * Va * valensi_a;
     const V_total = Va + Vb;
-    const f = mol_H / mol_OH_eq;
-    if (f < 1) {
-        const mol_BOH_sisa = Mb * Vb * (1 - f);
-        const BOH = mol_BOH_sisa / V_total;
-        return hitungPHBasaLemah(BOH, Kb, "pH");
-    } else if (f > 1) {
-        const mol_H_sisa = mol_H - mol_OH_eq;
+    if (V_total <= 0) throw new Error("Total volume harus positif.");
+
+    const pKb = -Math.log10(Kb);
+
+    if (mol_H === 0) { 
+        return hitungPHBasaLemah(Mb, Kb, "pH");
+    } else if (mol_H < mol_BOH_awal) { 
+        const mol_BOH_sisa = mol_BOH_awal - mol_H;
+        const mol_BH_terbentuk = mol_H;
+        const pOH = pKb + Math.log10(mol_BH_terbentuk / mol_BOH_sisa);
+        return pKw - pOH;
+    } else if (mol_H > mol_BOH_awal) { 
+        const mol_H_sisa = mol_H - mol_BOH_awal;
         const H = mol_H_sisa / V_total;
         return hitungPHDasar(H, "pH");
-    } else {
-        const C_salt = Mb * Vb / V_total;
+    } else { 
+        const C_salt = mol_BOH_awal / V_total;
         const Ka_salt = Kw / Kb;
         const H = Math.sqrt(Ka_salt * C_salt);
         return hitungPHDasar(H, "pH");
@@ -760,13 +1028,15 @@ function hitungVolumeTitikEkivalen(Ma, Va, Mb, valensi_a, valensi_b, target) {
 
 function hitungPHTitikEkivalen(Ma, Va, Mb, valensi_a, valensi_b, jenis_asam, jenis_basa, Ka, Kb, target) {
     if (target !== "pH_eq") throw new Error('Target tidak valid');
-    const V_eq = hitungVolumeTitikEkivalen(Ma, Va, Mb, valensi_a, valensi_b, "Vb_eq");
-    return hitungPHCampuran(Ma, Va, Mb, V_eq, valensi_a, valensi_b, jenis_asam, jenis_basa, Ka, Kb, "pH");
+    
+    const Vb_eq = hitungVolumeTitikEkivalen(Ma, Va, Mb, valensi_a, valensi_b, "Vb_eq");
+    
+    return hitungPHCampuran(Ma, Va, Mb, Vb_eq, valensi_a, valensi_b, jenis_asam, jenis_basa, Ka, Kb, "pH");
 }
 
 function hitungHDariPH(pH, target) {
     if (target === "[H⁺]") {
-        if (pH < 0 || pH > 14) throw new Error("Nilai pH harus antara 0 dan 14.");
+        if (pH < -1 || pH > 15) throw new Error("Nilai pH tidak realistis.");
         return Math.pow(10, -pH);
     }
     throw new Error('Target tidak valid');
@@ -782,7 +1052,7 @@ function hitungOHDariPH(pH, target) {
 
 function hitungHDariPOH(pOH, target) {
     if (target === "[H⁺]") {
-        if (pOH < 0 || pOH > 14) throw new Error("Nilai pOH harus antara 0 dan 14.");
+        if (pOH < -1 || pOH > 15) throw new Error("Nilai pOH tidak realistis.");
         const pH = pKw - pOH;
         return hitungHDariPH(pH, "[H⁺]");
     }
@@ -791,7 +1061,7 @@ function hitungHDariPOH(pOH, target) {
 
 function hitungOHDariPOH(pOH, target) {
     if (target === "[OH⁻]") {
-        if (pOH < 0 || pOH > 14) throw new Error("Nilai pOH harus antara 0 dan 14.");
+        if (pOH < -1 || pOH > 15) throw new Error("Nilai pOH tidak realistis.");
         return Math.pow(10, -pOH);
     }
     throw new Error('Target tidak valid');
@@ -805,8 +1075,10 @@ function hitungPHEkivalenKuatKuat(Ma, Va, Mb, valensi_a, valensi_b, target) {
 function hitungPHEkivalenLemahKuat(Ma, Va, Mb, valensi_a, valensi_b, Ka, target) {
     if (target !== "pH") throw new Error('Target tidak valid');
     if (Ka <= 0) throw new Error("Ka harus positif.");
-    const V_eq = (Ma * Va * valensi_a) / (Mb * valensi_b);
-    const C_salt = (Ma * Va) / (Va + V_eq);
+    const Vb_eq = (Ma * Va * valensi_a) / (Mb * valensi_b); 
+    const V_total = Va + Vb_eq;
+    if (V_total <= 0) throw new Error("Total volume harus positif.");
+    const C_salt = (Ma * Va) / V_total; 
     const Kb_salt = Kw / Ka;
     const OH = Math.sqrt(Kb_salt * C_salt);
     return hitungPOHDasar(OH, "pH");
@@ -815,8 +1087,10 @@ function hitungPHEkivalenLemahKuat(Ma, Va, Mb, valensi_a, valensi_b, Ka, target)
 function hitungPHEkivalenKuatLemah(Ma, Va, Mb, valensi_a, valensi_b, Kb, target) {
     if (target !== "pH") throw new Error('Target tidak valid');
     if (Kb <= 0) throw new Error("Kb harus positif.");
-    const V_eq = (Mb * Vb * valensi_b) / (Ma * valensi_a);
-    const C_salt = (Mb * Vb) / (Vb + V_eq);
+    const Va_eq = (Mb * Vb * valensi_b) / (Ma * valensi_a); 
+    const V_total = Vb + Va_eq;
+    if (V_total <= 0) throw new Error("Total volume harus positif.");
+    const C_salt = (Mb * Vb) / V_total; 
     const Ka_salt = Kw / Kb;
     const H = Math.sqrt(Ka_salt * C_salt);
     return hitungPHDasar(H, "pH");
@@ -825,28 +1099,21 @@ function hitungPHEkivalenKuatLemah(Ma, Va, Mb, valensi_a, valensi_b, Kb, target)
 function hitungPHEkivalenLemahLemah(Ma, Va, Mb, valensi_a, valensi_b, Ka, Kb, target) {
     if (target !== "pH") throw new Error('Target tidak valid');
     if (Ka <= 0 || Kb <= 0) throw new Error("Ka dan Kb harus positif.");
-    const V_eq = (Ma * Va * valensi_a) / (Mb * valensi_b);
-    const C_salt = (Ma * Va) / (Va + V_eq);
-    const Kb_A = Kw / Ka;
-    const Ka_BH = Kw / Kb;
-    if (Kb_A > Ka_BH) {
-        const OH = Math.sqrt(Kb_A * C_salt);
-        return hitungPOHDasar(OH, "pH");
-    } else {
-        const H = Math.sqrt(Ka_BH * C_salt);
-        return hitungPHDasar(H, "pH");
-    }
+    const pKa = -Math.log10(Ka);
+    const pKb = -Math.log10(Kb);
+    return 0.5 * (pKw + pKa - pKb);
 }
 
 function hitungKapasitasBufferAsam(pKa, HA, A, V, target) {
     if (target === "beta") {
         if (HA <= 0 || A <= 0 || V <= 0) throw new Error("Konsentrasi dan volume harus positif.");
-        const C = HA + A;
+        const C = HA + A; 
+        const Ka = Math.pow(10, -pKa);
         const ratio = A / HA;
         const pH = pKa + Math.log10(ratio);
         const H = Math.pow(10, -pH);
-        const Ka = Math.pow(10, -pKa);
-        return 2.303 * C * (Ka * H) / Math.pow(Ka + H, 2) * V;
+        const beta = 2.303 * C * (Ka * H) / Math.pow(Ka + H, 2);
+        return beta; 
     }
     throw new Error('Target tidak valid');
 }
@@ -855,11 +1122,12 @@ function hitungKapasitasBufferBasa(pKb, BOH, BH, V, target) {
     if (target === "beta") {
         if (BOH <= 0 || BH <= 0 || V <= 0) throw new Error("Konsentrasi dan volume harus positif.");
         const C = BOH + BH;
+        const Kb = Math.pow(10, -pKb);
         const ratio = BH / BOH;
         const pOH = pKb + Math.log10(ratio);
         const OH = Math.pow(10, -pOH);
-        const Kb = Math.pow(10, -pKb);
-        return 2.303 * C * (Kb * OH) / Math.pow(Kb + OH, 2) * V;
+        const beta = 2.303 * C * (Kb * OH) / Math.pow(Kb + OH, 2);
+        return beta; 
     }
     throw new Error('Target tidak valid');
 }
@@ -867,27 +1135,33 @@ function hitungKapasitasBufferBasa(pKb, BOH, BH, V, target) {
 function hitungPHBufferSetelahAsam(pKa, HA, A, V, n_asam, jenis_asam, Ka_asam, target) {
     if (target !== "pH") throw new Error('Target tidak valid');
     if (n_asam < 0) throw new Error("Mol asam ditambahkan harus non-negatif.");
+    
     let mol_HA = HA * V;
     let mol_A = A * V;
-    mol_HA += n_asam;
+    
+    mol_HA += n_asam; 
     mol_A -= n_asam;
-    if (mol_A < 0) throw new Error("Buffer habis (A⁻ terlalu sedikit)");
-    const HA_baru = mol_HA / V;
-    const A_baru = mol_A / V;
-    return pKa + Math.log10(A_baru / HA_baru);
+    
+    if (mol_A <= 0) throw new Error("Buffer habis (Basa konjugasi [A⁻] habis bereaksi). pH akan anjlok.");
+    if (mol_HA <= 0) throw new Error("Komponen buffer tidak valid.");
+
+    return pKa + Math.log10(mol_A / mol_HA);
 }
 
 function hitungPHBufferSetelahBasa(pKb, BOH, BH, V, n_basa, jenis_basa, Kb_basa, target) {
     if (target !== "pH") throw new Error('Target tidak valid');
     if (n_basa < 0) throw new Error("Mol basa ditambahkan harus non-negatif.");
+    
     let mol_BOH = BOH * V;
     let mol_BH = BH * V;
-    mol_BOH += n_basa;
+    
+    mol_BOH += n_basa; 
     mol_BH -= n_basa;
-    if (mol_BH < 0) throw new Error("Buffer habis (BH⁺ terlalu sedikit)");
-    const BOH_baru = mol_BOH / V;
-    const BH_baru = mol_BH / V;
-    const pOH = pKb + Math.log10(BH_baru / BOH_baru);
+    
+    if (mol_BH <= 0) throw new Error("Buffer habis (Asam konjugasi [BH⁺] habis bereaksi). pH akan melonjak.");
+    if (mol_BOH <= 0) throw new Error("Komponen buffer tidak valid.");
+    
+    const pOH = pKb + Math.log10(mol_BH / mol_BOH);
     return pKw - pOH;
 }
 
@@ -924,9 +1198,8 @@ function hitungPengenceranBasaLemah(Mb_awal, V_awal, V_akhir, Kb, target) {
 function hitungPengenceranBuffer(pKa, HA, A, V_awal, V_akhir, target) {
     if (target !== "pH") throw new Error('Target tidak valid');
     if (V_akhir <= V_awal) throw new Error("Volume akhir harus lebih besar dari awal.");
-    const HA_akhir = (HA * V_awal) / V_akhir;
-    const A_akhir = (A * V_awal) / V_akhir;
-    return pKa + Math.log10(A_akhir / HA_akhir);
+    
+    return hitungPHBufferAsam(pKa, A, HA, "pH");
 }
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antikythera | Fisika | Mekanika Klasik</title>
+    <link rel="stylesheet" href="Antykithera.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+    <nav class="navbar">
+      <div class="logo">
+        <span class="antiky">Antiky</span><span class="thera">thera</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+        <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+        <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+      </ul>
+    </nav>
+    <div class="callc">
+        <h1>Mari Berhitung</h1>
+        <p>Pilih topik hitungan Fisika Mekanika Klasik, lalu pilih parameter yang ingin dicari.</p>
+
+        <label for="pilih-topik">Pilih Topik Mekanika Klasik:</label>
+        <select id="pilih-topik" onchange="tampilkanKalkulator()">
+            <option value="">--Pilih--</option>
+            <option value="glb-glbb">Gerak Lurus Beraturan & Berubah Beraturan (GLB & GLBB)</option>
+            <option value="gerak-parabola">Gerak Parabola</option>
+            <option value="gaya-hukum-newton">Gaya dan Hukum Newton</option>
+            <option value="usaha-energi">Usaha dan Energi</option>
+            <option value="momentum-impuls">Momentum dan Impuls</option>
+            <option value="dinamika-rotasi">Dinamika Rotasi</option>
+            <option value="gravitasi">Hukum Gravitasi Newton</option>
+            <option value="fluida-statis">Fluida Statis (Tekanan, Archimedes)</option>
+            <option value="getaran-harmonis">Getaran Harmonis Sederhana</option>
+        </select>
+
+        <hr>
+
+        <div id="kalkulator-area">
+        </div>
+      </div>
+
+      <div>
+        <a href="fisika.html" class="btn-back" aria-label="Kembali ke halaman Topik Fisika"><i class="fas fa-arrow-left"></i> </a>
+      </div>
+
+    <footer class="footer">
+         <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+    </footer>
+
+    <script src="mekanikaklasik.js">
+    </script>
+</body>
+</html>

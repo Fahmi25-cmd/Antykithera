@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antikythera | Matematika | Statistika</title>
+    <link rel="stylesheet" href="Antykithera.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+    <nav class="navbar">
+      <div class="logo">
+        <span class="antiky">Antiky</span><span class="thera">thera</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+        <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+        <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+      </ul>
+    </nav>
+
+    <div class="callc">
+        <h1>Mari Berhitung</h1>
+        <p>Pilih perhitungan statistika yang ingin digunakan.</p>
+
+        <label for="pilih-bangun">Pilih Jenis Perhitungan:</label>
+        <select id="pilih-bangun" onchange="tampilkanKalkulator()">
+            <option value="">--Pilih--</option>
+            <option value="mean">Rata-Rata (Mean)</option>
+            <option value="median">Median</option>
+            <option value="modus">Modus</option>
+            <option value="jangkauan">Jangkauan (Range)</option>
+            <option value="varians">Varians</option>
+            <option value="simpangan-baku">Simpangan Baku</option>
+            <option value="kuartil">Kuartil</option>
+            <option value="persentil">Persentil</option>
+            <option value="peluang">Peluang</option>
+            <option value="kombinasi">Kombinasi (nCr)</option>
+            <option value="permutasi">Permutasi (nPr)</option>
+        </select>
+
+        <hr>
+
+        <div id="kalkulator-area">
+        </div>
+    </div>
+
+    <div>
+        <a href="matematika.html" class="btn-back" aria-label="Kembali ke halaman Topik Matematika"><i class="fas fa-arrow-left"></i> </a>
+      </div>
+
+    <footer class="footer">
+         <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+    </footer>
+
+    <script src="statistika.js"></script>
+</body>
+</html>

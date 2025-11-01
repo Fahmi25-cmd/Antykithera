@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antikythera | Matematika | Trigonometri</title>
+    <link rel="stylesheet" href="Antykithera.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+    <nav class="navbar">
+      <div class="logo">
+        <span class="antiky">Antiky</span><span class="thera">thera</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+        <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+        <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+      </ul>
+    </nav>
+
+    <div class="callc">
+        <h1>Mari Berhitung</h1>
+        <p>Pilih topik trigonometri yang ingin dipelajari atau dihitung.</p>
+
+        <label for="pilih-bangun">Pilih Materi Trigonometri:</label>
+        <select id="pilih-bangun" onchange="tampilkanKalkulator()">
+            <option value="">--Pilih--</option>
+            <option value="perbandingan-dasar">Perbandingan Trigonometri Dasar</option>
+            <option value="identitas-dasar">Identitas Dasar Trigonometri</option>
+            <option value="sudut-istimewa">Sudut-Sudut Istimewa</option>
+            <option value="hubungan-kuadran">Tanda Fungsi di Kuadran</option>
+            <option value="sudut-berelasi">Rumus Sudut Berelasi</option>
+            <option value="penjumlahan-pengurangan">Rumus Penjumlahan & Pengurangan Sudut</option>
+            <option value="sudut-ganda-setengah">Rumus Sudut Ganda & Setengah</option>
+            <option value="jumlah-selisih">Rumus Jumlah & Selisih Sinus dan Cosinus</option>
+            <option value="hukum-sinus-cosinus">Hukum Sinus & Cosinus</option>
+            <option value="luas-segitiga">Rumus Luas Segitiga</option>
+            <option value="lingkaran-trigonometri">Lingkaran Trigonometri</option>
+            <option value="konversi-radian-derajat">Konversi Derajat ↔ Radian</option>
+            <option value="persamaan-trigonometri">Persamaan Trigonometri</option>
+            <option value="grafik-fungsi">Grafik Fungsi Trigonometri</option>
+            <option value="aplikasi">Aplikasi Trigonometri</option>
+            <option value="produk-ke-jumlah">Rumus Produk ke Jumlah</option>
+            <option value="sudut-tiga-kali">Rumus Sudut Tiga Kali</option>
+            <option value="invers-trigonometri">Fungsi Invers Trigonometri</option>
+            <option value="identitas-lanjutan">Identitas Trigonometri Lanjutan</option>
+        </select>
+
+        <hr>
+
+        <div id="kalkulator-area">
+        </div>
+    </div>
+
+    <div>
+        <a href="matematika.html" class="btn-back" aria-label="Kembali ke halaman Topik Matematika"><i class="fas fa-arrow-left"></i> </a>
+      </div>
+
+    <footer class="footer">
+         <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+    </footer>
+
+    <script src="trigonometri.js"></script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antikythera | Layanan | Kalkulator Sederhana</title>
+    <link rel="stylesheet" href="layanan.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-image: url("background.jpg");
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main.layanan-detail {
+            flex: 1;
+            padding: 60px 20px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content {
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            margin-top: 30px;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .content h1 span {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .calculator-container {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            padding: 25px;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calculator-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #e74c3c, #f39c12, #2ecc71);
+        }
+
+        .display {
+            background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            padding: 10px 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            height: 90px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: inset 0 4px 8px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            text-align: right;
+        }
+
+        .input {
+            font-size: 2.5em;
+            color: #fff;
+            white-space: nowrap;
+            overflow-x: auto;
+            order: 2;
+            line-height: 1.2;
+        }
+
+        .result-preview {
+            font-size: 1.2em;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.7);
+            white-space: nowrap;
+            overflow-x: auto;
+            order: 1;
+            line-height: 1.2;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+        }
+
+        .button {
+            padding: 20px;
+            font-size: 1.3em;
+            font-weight: 500;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            background: linear-gradient(145deg, #f0f0f0 0%, #e0e0e0 100%);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .button:hover:not(.control-btn, .operator-btn, .function-btn, .equal-btn) {
+            background: linear-gradient(145deg, #e6e6e6 0%, #d6d6d6 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+        }
+
+        .button:active:not(.control-btn, .operator-btn, .function-btn, .equal-btn) {
+            transform: translateY(0);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .function-btn {
+            background: linear-gradient(145deg, #d0d0d0 0%, #c0c0c0 100%);
+            color: #333;
+            font-size: 1.1em;
+        }
+        
+        .function-btn:hover {
+            background: linear-gradient(145deg, #c4c4c4 0%, #b4b4b4 100%);
+        }
+
+        .operator-btn {
+            background: linear-gradient(145deg, #ff9500 0%, #e68900 100%);
+            color: white;
+            font-weight: bold;
+        }
+        
+        .operator-btn:hover {
+            background: linear-gradient(145deg, #e68900 0%, #cc7a00 100%);
+        }
+
+        .control-btn {
+            background: linear-gradient(145deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+        }
+        
+        .control-btn:hover {
+            background: linear-gradient(145deg, #c0392b 0%, #a03022 100%);
+        }
+
+        .active-mode {
+            background: linear-gradient(145deg, #3498db 0%, #2980b9 100%);
+            color: white;
+        }
+        
+        .active-mode:hover {
+             background-color: #2980b9;
+        }
+
+        .equal-btn {
+            background: linear-gradient(145deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            font-weight: bold;
+            font-size: 1.4em;
+        }
+        
+        .equal-btn:hover {
+            background: linear-gradient(145deg, #45a049 0%, #3e8e41 100%);
+        }
+
+        .zero-btn {
+            grid-column: span 2;
+        }
+
+.btn-back {
+          position: fixed; 
+          bottom: 80px;
+          right: 30px;
+          z-index: 1000; 
+
+          display: flex; 
+          align-items: center;
+          gap: 12px;
+          padding: 22px 45px;
+          background-color: #f1f1f1;
+          color: #333;
+          text-decoration: none;
+          border-radius: 30px;
+          font-weight: 700;
+          transition: all 0.3s ease;
+          box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4); 
+          font-size: 1em;
+          border: 2px solid #3498db;
+      }
+
+      .btn-back::after {
+          content: "KEMBALI";
+          margin-left: 5px;
+          font-size: 1.5em;
+          color: #3498db;
+          font-weight: 700;
+      }
+
+      .btn-back i {
+          font-size: 1.8em;
+          color: #3498db;
+      }
+
+      .btn-back:hover {
+          background-color: #e0e0e0;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+          transform: translateY(-4px);
+      }
+      .callc {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding-bottom: 100px;
+      }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <span class="antiky">Antiky</span><span class="thera">thera</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+                <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+                <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="layanan-detail">
+        <section class="content">
+            <h1>Kalkulator Dasar <span>Antikythera</span></h1>
+
+            <div class="calculator-container" role="region" aria-label="Kalkulator Kompleks">
+                <div class="display">
+                    <div class="result-preview" role="status" aria-live="polite">0</div>
+                    <div class="input" aria-live="assertive"></div>
+                </div>
+
+                <div class="buttons">
+
+                    <button class="button control-btn" aria-label="All Clear">AC</button>
+                    <button class="button control-btn" aria-label="Delete">DEL</button>
+                    <button class="button control-btn" aria-label="Buka kurung">(</button>
+                    <button class="button control-btn" aria-label="Tutup kurung">)</button>
+                    <button class="button operator-btn" aria-label="Bagi">/</button>
+
+                    <button class="button function-btn" aria-label="Sinus">sin</button>
+                    <button class="button function-btn" aria-label="Kosinus">cos</button>
+                    <button class="button function-btn" aria-label="Tangen">tan</button>
+                    <button class="button function-btn" aria-label="Akar Kuadrat">√</button>
+                    <button class="button operator-btn" aria-label="Kali">×</button>
+
+                    <button class="button function-btn" aria-label="Logaritma basis 10">log</button>
+                    <button class="button function-btn" aria-label="Logaritma natural">ln</button>
+                    <button class="button function-btn" aria-label="Pangkat">^</button>
+                    <button class="button function-btn" aria-label="Faktorial">!</button>
+                    <button class="button operator-btn" aria-label="Kurang">-</button>
+
+                    <button class="button function-btn" id="deg-btn" aria-label="Mode Derajat">Deg</button>
+                    <button class="button function-btn" id="rad-btn" aria-label="Mode Radian">Rad</button>
+                    <button class="button" aria-label="Tujuh">7</button>
+                    <button class="button" aria-label="Delapan">8</button>
+                    <button class="button" aria-label="Sembilan">9</button>
+
+                    <button class="button function-btn" aria-label="Konstanta Pi">π</button>
+                    <button class="button function-btn" aria-label="Konstanta Euler">e</button>
+                    <button class="button" aria-label="Empat">4</button>
+                    <button class="button" aria-label="Lima">5</button>
+                    <button class="button" aria-label="Enam">6</button>
+
+                    <button class="button function-btn" aria-label="E Pangkat X">e^x</button>
+                    <button class="button function-btn" aria-label="Pangkat Dua">x²</button>
+                    <button class="button" aria-label="Satu">1</button>
+                    <button class="button" aria-label="Dua">2</button>
+                    <button class="button" aria-label="Tiga">3</button>
+
+                    <button class="button zero-btn" aria-label="Nol">0</button>
+                    <button class="button" aria-label="Titik Desimal">.</button>
+                    <button class="button operator-btn" aria-label="Tambah">+</button>
+                    <button class="button equal-btn" aria-label="Sama dengan">=</button>
+
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <div>
+        <a href="layanan.html" class="btn-back" aria-label="Kembali ke halaman layanan"><i class="fas fa-arrow-left"></i> </a>
+    </div>
+
+    <footer>
+        <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+    </footer>
+
+    <script src="kalkulator.js"></script>
+</body>
+</html>

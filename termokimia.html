@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antikythera | Kimia | Termokimia</title>
+  <link rel="stylesheet" href="Antykithera.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">
+      <span class="antiky">Antiky</span><span class="thera">thera</span>
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+        <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+        <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+    </ul>
+  </nav>
+
+  <div class="callc">
+    <h1>Mari Berhitung</h1>
+    <p>Pilih topik perhitungan termokimia di bawah ini.</p>
+
+    <label for="pilih-topik">Pilih Materi Termokimia:</label>
+    <select id="pilih-topik" onchange="tampilkanKalkulator()">
+      <option value="">--Pilih--</option>
+
+      <optgroup label="A. Energi dan Kalor">
+        <option value="kalor">Kalor (Q = m·c·ΔT)</option>
+        <option value="kapasitas-panas">Kapasitas Panas</option>
+        <option value="kalor-reaksi">Kalor Reaksi</option>
+        <option value="perubahan-entalpi">Perubahan Entalpi (ΔH)</option>
+        <option value="hubungan-kalor-entalpi">Hubungan Kalor dan Entalpi</option>
+        <option value="kalorimetri">Kalorimetri (Qreaksi = −Qkalorimeter)</option>
+      </optgroup>
+
+      <optgroup label="B. Hukum Termokimia">
+        <option value="hukum-hess">Hukum Hess</option>
+        <option value="reaksi-pembalikan">Perubahan Tanda ΔH Reaksi</option>
+        <option value="reaksi-berkali">Kelipatan Reaksi dan ΔH</option>
+        <option value="penjumlahan-reaksi">Penjumlahan Reaksi Termokimia</option>
+      </optgroup>
+
+      <optgroup label="C. Energi Reaksi Kimia">
+        <option value="reaksi-endoterm">Reaksi Endoterm</option>
+        <option value="reaksi-eksoterm">Reaksi Eksoterm</option>
+        <option value="entalpi-pembentukan">Entalpi Pembentukan</option>
+        <option value="entalpi-pembakaran">Entalpi Pembakaran</option>
+        <option value="entalpi-pelarutan">Entalpi Pelarutan</option>
+        <option value="entalpi-netralisasi">Entalpi Netralisasi</option>
+      </optgroup>
+
+      <optgroup label="D. Energi Internal dan Kerja">
+        <option value="energi-dalam">Energi Dalam (ΔU)</option>
+        <option value="hubungan-entalpi-energi">Hubungan ΔH dan ΔU</option>
+        <option value="kerja-sistem">Usaha Sistem (w = −PΔV)</option>
+        <option value="energi-dalam-gas">Energi Dalam Gas Ideal</option>
+      </optgroup>
+
+      <optgroup label="E. Hukum Termodinamika">
+        <option value="hukum-pertama">Hukum Pertama Termodinamika</option>
+        <option value="perubahan-energi-total">Perubahan Energi Total</option>
+        <option value="konversi-energi">Konversi Energi Panas dan Kerja</option>
+      </optgroup>
+
+      <optgroup label="F. Data Termokimia dan Standar">
+        <option value="entalpi-standar">Entalpi Standar Pembentukan (ΔH°f)</option>
+        <option value="perubahan-entalpi-dari-data">Perubahan Entalpi dari Data Tabel</option>
+        <option value="reaksi-bond-energi">Energi Ikatan (Bond Energy)</option>
+        <option value="hubungan-bond-energi-reaksi">Hubungan Energi Ikatan dan ΔHreaksi</option>
+      </optgroup>
+
+    </select>
+
+    <hr>
+
+    <div id="kalkulator-area">
+
+    </div>
+  </div>
+
+  <div>
+        <a href="kimia.html" class="btn-back" aria-label="Kembali ke halaman Topik Kimia"><i class="fas fa-arrow-left"></i> </a>
+      </div>
+
+  <footer class="footer">
+     <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+  </footer>
+
+  <script src="termokimia.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antikythera | Kimia | Asam & Basa</title>
+  <link rel="stylesheet" href="Antykithera.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">
+      <span class="antiky">Antiky</span><span class="thera">thera</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+        <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+        <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+    </ul>
+  </nav>
+
+  <div class="callc">
+    <h1>Mari Berhitung</h1>
+    <p>Pilih topik perhitungan asam-basa di bawah ini.</p>
+
+    <label for="pilih-topik">Pilih Materi Asam–Basa:</label>
+    <select id="pilih-topik" onchange="tampilkanKalkulator()">
+      <option value="">--Pilih--</option>
+
+      <optgroup label="A. pH dan pOH">
+        <option value="ph-poh">pH Larutan Asam Kuat</option>
+        <option value="ph-poh">pH Larutan Basa Kuat</option>
+        <option value="ph-poh">pH Asam Lemah</option>
+        <option value="ph-poh">pH Basa Lemah</option>
+        <option value="ph-poh">pH dari [H⁺]</option>
+        <option value="ph-poh">pOH dari [OH⁻]</option>
+        <option value="ph-poh">Hubungan pH dan pOH</option>
+      </optgroup>
+
+      <optgroup label="B. Konstanta Kesetimbangan">
+        <option value="konstanta">Konstanta Asam (Ka)</option>
+        <option value="konstanta">Konstanta Basa (Kb)</option>
+        <option value="konstanta">Konstanta Air (Kw)</option>
+        <option value="konstanta">Hubungan Ka dan Kb</option>
+        <option value="konstanta">Hubungan pKa dan pKb</option>
+      </optgroup>
+
+      <optgroup label="C. Titrasi Asam-Basa">
+        <option value="titrasi">Titrasi Asam Kuat vs Basa Kuat</option>
+        <option value="titrasi">Titrasi Asam Lemah vs Basa Kuat</option>
+        <option value="titrasi">Titrasi Basa Lemah vs Asam Kuat</option>
+        <option value="titrasi">Volume pada Titik Ekivalen</option>
+        <option value="titrasi">pH pada Titik Ekivalen</option>
+      </optgroup>
+
+      <optgroup label="D. Larutan Penyangga (Buffer)">
+        <option value="buffer">pH Buffer Asam</option>
+        <option value="buffer">pH Buffer Basa</option>
+        <option value="buffer">Perubahan pH setelah Penambahan Asam/Basa</option>
+        <option value="buffer">Kapasitas Buffer</option>
+        <option value="buffer">Perhitungan Komposisi Buffer</option>
+      </optgroup>
+
+      <optgroup label="E. Perhitungan Umum Asam–Basa">
+        <option value="ionisasi">Derajat Ionisasi (α)</option>
+        <option value="konsentrasi-ion-h">[H⁺] dan [OH⁻]</option>
+        <option value="ionisasi">Persentase Ionisasi</option>
+        <option value="pengenceran">Perubahan pH karena Pengenceran</option>
+        <option value="campuran">pH Campuran Dua Larutan</option>
+      </optgroup>
+    </select>
+
+    <hr>
+
+    <div id="kalkulator-area">
+      
+      </div>
+  </div>
+
+  <div>
+        <a href="kimia.html" class="btn-back" aria-label="Kembali ke halaman Topik Kimia"><i class="fas fa-arrow-left"></i> </a>
+      </div>
+
+  <footer class="footer">
+     <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+  </footer>
+
+  <script src="asambasa.js"></script>
+</body>
+</html>

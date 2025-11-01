@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Termodinamika Lengkap</title>
+    <link rel="stylesheet" href="Antykithera.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+    <nav class="navbar">
+      <div class="logo">
+        <span class="antiky">Antiky</span><span class="thera">thera</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+        <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+        <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+      </ul>
+    </nav>
+
+    <div class="callc">
+        <h1>Mari Berhitung</h1>
+        <p>Pilih topik perhitungan Termodinamika di bawah ini untuk menghitung secara otomatis.</p>
+
+        <label for="pilih-topik">Pilih Rumus Termodinamika:</label>
+<select id="pilih-topik" onchange="tampilkanKalkulator()">
+    <option value="">--Pilih--</option>
+
+    <option value="konversi-suhu">Konversi Suhu</option>
+    <option value="kalor">Kalor</option>
+    <option value="perubahan-wujud">Perubahan Wujud</option>
+    <option value="asas-black">Asas Black</option>
+    <option value="pemuaian-linear">Pemuaian Linear</option>
+    <option value="pemuaian-luas">Pemuaian Luas</option>
+    <option value="pemuaian-volume">Pemuaian Volume</option>
+
+    <option value="gas-ideal">Hukum Gas Ideal</option>
+    <option value="boyle">Hukum Boyle</option>
+    <option value="charles">Hukum Charles</option>
+    <option value="gay-lussac">Hukum Gay-Lussac</option>
+    <option value="avogadro">Hukum Avogadro</option>
+    <option value="van-der-waals">Gas Nyata (Van der Waals)</option>
+
+    
+    <option value="energi-dalam">Energi Dalam Gas Ideal</option>
+    <option value="usaha-gas">Usaha Gas</option>
+    <option value="usaha-isotermal">Usaha Isotermal</option>
+    <option value="usaha-adiabatik">Usaha Adiabatik</option>
+   
+    <option value="hukum-pertama">Hukum Pertama Termodinamika</option>
+    <option value="kapasitas-kalor-gas">Hubungan Kapasitas Kalor</option>
+    <option value="perbandingan-cp-cv">Perbandingan γ</option>
+
+    <option value="isobarik">Proses Isobarik</option>
+    <option value="isochorik">Proses Isochorik</option>
+    <option value="isotermal">Proses Isotermal</option>
+    <option value="adiabatik">Proses Adiabatik</option>
+
+    <option value="efisiensi-mesin">Efisiensi Mesin Kalor</option>
+    <option value="efisiensi-carnot">Efisiensi Carnot</option>
+    <option value="cop-pendingin">Koefisien Performa Pendingin</option>
+    <option value="cop-pompa-kalor">Koefisien Performa Pompa Kalor</option>
+
+    <option value="entropi">Perubahan Entropi</option>
+    <option value="entropi-isotermal">Entropi Isotermal</option>
+</select>
+
+
+        <hr>
+
+        <div id="kalkulator-area">
+
+        </div>
+      </div>
+
+      <div>
+        <a href="fisika.html" class="btn-back" aria-label="Kembali ke halaman Topik Fisika"><i class="fas fa-arrow-left"></i> </a>
+      </div>
+
+    <footer class="footer">
+         <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+    </footer>
+
+    <script src="termodinamika.js"></script>
+</body>
+</html>

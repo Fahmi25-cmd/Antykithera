@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antikythera | Kimia | Kinetika Kimia</title>
+  <link rel="stylesheet" href="Antykithera.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">
+      <span class="antiky">Antiky</span><span class="thera">thera</span>
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+        <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+        <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+    </ul>
+  </nav>
+
+  <div class="callc">
+    <h1>Mari Berhitung</h1>
+    <p>Pilih topik perhitungan kinetika kimia di bawah ini.</p>
+
+    <label for="pilih-topik">Pilih Materi Kinetika Kimia:</label>
+    <select id="pilih-topik" onchange="tampilkanKalkulator()">
+      <option value="">--Pilih--</option>
+
+      <optgroup label="A. Laju Reaksi">
+        <option value="laju-reaksi">Laju Reaksi (r = Δ[Z]/Δt)</option>
+        <option value="laju-rata-rata">Laju Rata-Rata</option>
+        <option value="laju-seketika">Laju Sesaat (Turunan Konsentrasi)</option>
+        <option value="hubungan-laju-stoikiometri">Hubungan Laju dan Koefisien Stoikiometri</option>
+      </optgroup>
+      
+      <optgroup label="B. Hukum Laju Reaksi">
+        <option value="persamaan-laju">Persamaan Laju Umum (r = k[A]^m[B]^n)</option>
+        <option value="orde-reaksi">Orde Reaksi (Total dan Parsial)</option>
+        <option value="penentuan-orde-reaksi">Penentuan Orde dari Data Eksperimen</option>
+        <option value="konstanta-laju">Konstanta Laju (k)</option>
+      </optgroup>
+
+      <optgroup label="C. Persamaan Laju Terintegrasi">
+        <option value="orde-nol">Reaksi Orde Nol</option>
+        <option value="orde-satu">Reaksi Orde Satu</option>
+        <option value="orde-dua">Reaksi Orde Dua</option>
+        <option value="waktu-paruh">Waktu Paruh (t½)</option>
+      </optgroup>
+
+      <optgroup label="D. Suhu dan Energi Aktivasi">
+        <option value="persamaan-arrhenius">Persamaan Arrhenius</option>
+        <option value="energi-aktivasi">Energi Aktivasi (Ea)</option>
+        <option value="konstanta-laju-suhu">Perubahan k terhadap Suhu</option>
+        <option value="log-k1-k2">Hubungan Dua Suhu (log k2/k1)</option>
+      </optgroup>
+
+      <optgroup label="E. Mekanisme Reaksi">
+        <option value="reaksi-elementer">Reaksi Elementer</option>
+        <option value="molekularitas">Molekularitas Reaksi</option>
+        <option value="reaksi-langkah-maju-mundur">Laju Reaksi Maju dan Mundur</option>
+        <option value="reaksi-kesetimbangan-dinamis">Kesetimbangan Dinamis (k1, k2, Kc)</option>
+      </optgroup>
+
+      <optgroup label="F. Faktor yang Mempengaruhi Laju">
+        <option value="konsentrasi">Pengaruh Konsentrasi</option>
+        <option value="suhu">Pengaruh Suhu</option>
+        <option value="luas-permukaan">Luas Permukaan Zat</option>
+        <option value="katalis">Pengaruh Katalis</option>
+        <option value="tekanan">Pengaruh Tekanan (Gas)</option>
+      </optgroup>
+    </select>
+
+    <hr>
+
+    <div id="kalkulator-area">
+      
+    </div>
+  </div>
+
+  <div>
+        <a href="kimia.html" class="btn-back" aria-label="Kembali ke halaman Topik Kimia"><i class="fas fa-arrow-left"></i> </a>
+      </div>
+
+  <footer class="footer">
+     <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+  </footer>
+
+  <script src="kinetikakimia.js"></script>
+</body>
+</html>

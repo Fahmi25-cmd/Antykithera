@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Antikythera | Matematika</title>
+  <link rel="stylesheet" href="matematika.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    .btn-back {
+          position: fixed; 
+          bottom: 80px;
+          right: 30px;
+          z-index: 1000; 
+          display: flex; 
+          align-items: center;
+          gap: 12px;
+          padding: 22px 45px;
+          background-color: #f1f1f1;
+          color: #333;
+          text-decoration: none;
+          border-radius: 30px;
+          font-weight: 700;
+          transition: all 0.3s ease;
+          box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4); 
+          font-size: 1em;
+          border: 2px solid #3498db;
+      }
+
+      .btn-back::after {
+          content: "KEMBALI";
+          margin-left: 5px;
+          font-size: 1.5em;
+          color: #3498db;
+          font-weight: 700;
+      }
+
+      .btn-back i {
+          font-size: 1.8em;
+          color: #3498db;
+      }
+
+      .btn-back:hover {
+          background-color: #e0e0e0;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+          transform: translateY(-4px);
+      }
+      .callc {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding-bottom: 100px;
+      }
+    @media (max-width: 1024px) {
+          .btn-back { bottom: 70px; right: 25px; padding: 18px 38px; font-size: 0.95em; }
+          .btn-back i { font-size: 1.6em; }
+          .btn-back::after { font-size: 1.3em; }
+      }
+
+    @media (max-width: 768px) {
+          .btn-back { bottom: 65px; right: 20px; padding: 16px 35px; font-size: 0.9em; }
+          .btn-back i { font-size: 1.5em; }
+          .btn-back::after { font-size: 1.2em; }
+      }
+
+    @media (max-width: 576px) {
+          .btn-back { bottom: 60px; right: 15px; padding: 14px 30px; font-size: 0.85em; border-radius: 25px; }
+          .btn-back i { font-size: 1.4em; }
+          .btn-back::after { font-size: 1.1em; }
+      }
+
+    @media (max-width: 400px) {
+          .btn-back { bottom: 55px; right: 12px; padding: 12px 25px; font-size: 0.8em; }
+          .btn-back i { font-size: 1.3em; }
+          .btn-back::after { font-size: 1em; }
+      }
+
+  </style>
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <nav class="navbar" role="navigation" aria-label="Utama">
+      <div class="logo">
+        <span class="antiky">Antiky</span><span class="thera">thera</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+      <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+      <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+      <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="site-main" role="main">
+    <section class="intro" aria-labelledby="judul-topik">
+      <h1 id="judul-topik">Pilih Materi Matematika</h1>
+
+      <div class="bubble-wrapper" role="list" aria-label="Daftar topik matematika">
+        <a class="bubble" role="listitem" href="bangundatar.html">
+          <span class="bubble-title">Bangun Datar</span>
+        </a>
+
+        <a class="bubble" role="listitem" href="bangunruang.html">
+          <span class="bubble-title">Bangun Ruang</span>
+        </a>
+
+        <a class="bubble" role="listitem" href="aljabar.html">
+          <span class="bubble-title">Aljabar</span>
+        </a>
+
+        <a class="bubble" role="listitem" href="trigonometri.html">
+          <span class="bubble-title">Trigonometri</span>
+        </a>
+
+        <a class="bubble" role="listitem" href="statistika.html">
+          <span class="bubble-title">Statistika</span>
+        </a>
+
+        <a class="bubble" role="listitem" href="aritmatika.html">
+          <span class="bubble-title">Aritmatika</span>
+        </a>
+
+        <a class="bubble" role="listitem" href="geometri.html">
+          <span class="bubble-title">Geometri</span>
+        </a>
+      </div>
+    </section>
+    
+    <a href="index.html" class="btn-back" aria-label="Kembali ke halaman Beranda"><i class="fas fa-home"></i> </a>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+     <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+  </footer>
+
+  <script src="matematika.js"></script>
+</body>
+</html>

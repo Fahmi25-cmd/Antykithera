@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antikythera | Kimia | Elektrokimia</title>
+  <link rel="stylesheet" href="Antykithera.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">
+      <span class="antiky">Antiky</span><span class="thera">thera</span>
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+        <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+        <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+    </ul>
+  </nav>
+
+  <div class="callc">
+    <h1>Mari Berhitung</h1>
+    <p>Pilih topik perhitungan elektrokimia di bawah ini.</p>
+
+    <label for="pilih-topik">Pilih Materi Elektrokimia:</label>
+    <select id="pilih-topik" onchange="tampilkanKalkulator()">
+      <option value="">--Pilih--</option>
+
+      <optgroup label="A. Sel Volta dan Sel Elektrolisis">
+        <option value="potensial-sel">Potensial Sel (E°sel)</option>
+        <option value="reaksi-redoks-sel">Reaksi Redoks Sel</option>
+        <option value="arah-aliran-elektron">Arah Aliran Elektron</option>
+        <option value="elektroda-anoda-katoda">Anoda dan Katoda</option>
+      </optgroup>
+
+      <optgroup label="B. Potensial dan Energi Listrik">
+        <option value="persamaan-nernst">Persamaan Nernst</option>
+        <option value="potensial-non-standar">Potensial Sel Non-Standar</option>
+        <option value="energi-gibbs">Energi Gibbs (ΔG)</option>
+        <option value="hubungan-delta-g-dan-e">Hubungan ΔG dan E</option>
+        <option value="konstanta-kesetimbangan-elektrokimia">Konstanta Kesetimbangan (K)</option>
+      </optgroup>
+
+      <optgroup label="C. Hukum Faraday">
+        <option value="hukum-faraday-pertama">Hukum Faraday Pertama</option>
+        <option value="hukum-faraday-kedua">Hukum Faraday Kedua</option>
+        <option value="massa-endapan">Massa Zat yang Terendap</option>
+        <option value="jumlah-mol-elektron">Jumlah Mol Elektron</option>
+        <option value="hubungan-arus-waktu">Hubungan Arus dan Waktu</option>
+      </optgroup>
+
+      <optgroup label="D. Elektrolisis dan Produk Reaksi">
+        <option value="jumlah-mol-gas">Jumlah Mol Gas yang Dihasilkan</option>
+        <option value="massa-logam-endapan">Massa Logam Endapan</option>
+        <option value="volume-gas-elektrolisis">Volume Gas Hasil Elektrolisis</option>
+        <option value="efisiensi-elektrolisis">Efisiensi Elektrolisis</option>
+      </optgroup>
+
+      <optgroup label="E. Potensial Elektroda dan Reaksi Redoks">
+        <option value="potensial-elektroda-standar">Potensial Elektroda Standar (E°)</option>
+        <option value="reaksi-setengah-sel">Reaksi Setengah Sel</option>
+        <option value="persamaan-sel-volta">Persamaan Sel Volta</option>
+        <option value="susunan-sel-volta">Susunan Sel Volta</option>
+      </optgroup>
+
+      <optgroup label="F. Hubungan Termodinamika">
+        <option value="delta-g-dari-e">ΔG dari Potensial Sel</option>
+        <option value="konstanta-k-dari-e">K dari Potensial Sel</option>
+        <option value="hubungan-nernst-dengan-k">Persamaan Nernst dan K</option>
+        <option value="hubungan-energi-dan-massa">Hubungan Energi dan Massa Endapan</option>
+      </optgroup>
+    </select>
+
+    <hr>
+
+    <div id="kalkulator-area">
+      
+    </div>
+  </div>
+
+  <div>
+        <a href="kimia.html" class="btn-back" aria-label="Kembali ke halaman Topik Kimia"><i class="fas fa-arrow-left"></i> </a>
+      </div>
+
+  <footer class="footer">
+     <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+  </footer>
+
+  <script src="elektrokimia.js"></script>
+</body>
+</html>

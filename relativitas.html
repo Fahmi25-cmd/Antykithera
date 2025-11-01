@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antikythera | Fisika | Relativitas</title>
+    <link rel="stylesheet" href="Antykithera.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+    <nav class="navbar">
+      <div class="logo">
+        <span class="antiky">Antiky</span><span class="thera">thera</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+        <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+        <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+      </ul>
+    </nav>
+
+    <div class="callc">
+        <h1>Mari Berhitung</h1>
+        <p>Pilih topik perhitungan Relativitas Khusus atau Relativitas Umum di bawah ini.</p>
+
+        <label for="pilih-topik">Pilih Materi Relativitas:</label>
+        <select id="pilih-topik" onchange="tampilkanKalkulator()">
+            <option value="">--Pilih--</option>
+
+            <optgroup label="A. Relativitas Khusus">
+                <option value="transformasi-lorentz">Transformasi Lorentz</option>
+                <option value="dilatasi-waktu">Dilatasi Waktu</option>
+                <option value="kontraksi-panjang">Kontraksi Panjang</option>
+                <option value="relativitas-kecepatan">Relativitas Kecepatan</option>
+                <option value="energi-relativistik">Energi Relativistik</option>
+                <option value="momentum-relativistik">Momentum Relativistik</option>
+                <option value="energi-total">Energi Total Relativistik</option>
+                <option value="energi-diam">Energi Diam</option>
+                <option value="hubungan-massa-energi">Hubungan Massa dan Energi</option>
+                <option value="paradoks-kembar">Paradoks Kembar</option>
+                <option value="momentum-empat">Momentum Empat Dimensi</option>
+            </optgroup>
+
+            <optgroup label="B. Relativitas Umum">
+                <option value="persamaan-medan-einstein">Persamaan Medan Einstein</option>
+                <option value="dilatasi-waktu-gravitasi">Dilatasi Waktu Gravitasi</option>
+                <option value="redshift-gravitasi">Redshift Gravitasi</option>
+                <option value="orbit-relativistik">Orbit Relativistik</option>
+                <option value="pembengkokan-cahaya">Pembengkokan Cahaya oleh Gravitasi</option>
+                <option value="energi-potensial-gravitasi-relativistik">Energi Potensial Gravitasi Relativistik</option>
+            </optgroup>
+        </select>
+
+        <hr>
+
+        <div id="kalkulator-area">
+            
+        </div>
+    </div>
+
+    <div>
+        <a href="fisika.html" class="btn-back" aria-label="Kembali ke halaman Topik Fisika"><i class="fas fa-arrow-left"></i> </a>
+      </div>
+
+    <footer class="footer">
+         <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+    </footer>
+
+    <script src="relativitas.js"></script>
+</body>
+</html>

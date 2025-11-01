@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antikythera | Fisika | Fisika Modern</title>
+    <link rel="stylesheet" href="Antykithera.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <span class="antiky">Antiky</span><span class="thera">thera</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+            <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+            <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+        </ul>
+    </nav>
+
+    <div class="callc">
+        <h1>Mari Berhitung</h1>
+        <p>Pilih topik perhitungan dalam bidang Fisika Modern di bawah ini.</p>
+
+        <label for="pilih-topik">Pilih Materi Fisika Modern:</label>
+        <select id="pilih-topik" onchange="tampilkanKalkulator()">
+            <option value="">--Pilih--</option>
+
+            <optgroup label="A. Fisika Kuantum">
+                <option value="energi-foton">Energi Foton</option>
+                <option value="efek-fotoelektrik">Efek Fotoelektrik</option>
+                <option value="frekuensi-ambang">Frekuensi Ambang</option>
+                <option value="panjang-gelombang-de-broglie">Panjang Gelombang de Broglie</option>
+                <option value="energi-tingkat-atom">Energi Tingkat Atom Hidrogen</option>
+                <option value="transisi-elektron">Transisi Elektron</option>
+                <option value="energi-osilator-harmonik">Osilator Harmonik Kuantum</option>
+                <option value="efek-compton">Efek Compton</option>
+                <option value="ketidakpastian-heisenberg">Ketidakpastian Heisenberg</option>
+            </optgroup>
+
+            <optgroup label="C. Fisika Nuklir">
+                <option value="energi-ikatan-nuklir">Energi Ikatan Nuklir</option>
+                <option value="defek-massa">Defek Massa</option>
+                <option value="energi-reaksi">Energi Reaksi Nuklir</option>
+                <option value="peluruhan-radioaktif">Peluruhan Radioaktif</option>
+                <option value="waktu-paruh">Waktu Paruh</option>
+                <option value="aktivitas-radioaktif">Aktivitas Radioaktif</option>
+                <option value="energi-fisi">Energi Fisi</option>
+                <option value="energi-fusi">Energi Fusi</option>
+            </optgroup>
+
+            <optgroup label="D. Fisika Partikel">
+                <option value="energi-partikel">Energi Partikel Relativistik</option>
+                <option value="momentum-partikel">Momentum Partikel</option>
+                <option value="muatan-partikel">Muatan Partikel</option>
+                <option value="energi-tumbukan">Energi Tumbukan Partikel</option>
+                <option value="massa-partikel">Massa Partikel</option>
+            </optgroup>
+
+            <optgroup label="E. Semikonduktor dan Elektronika Kuantum">
+                <option value="energi-celah-pita">Energi Celah Pita (Band Gap)</option>
+                <option value="energi-elektron-konduksi">Energi Elektron di Pita Konduksi</option>
+                <option value="efek-hall">Efek Hall</option>
+                <option value="efek-foto-konduktif">Efek Fotokonduktif</option>
+                <option value="efek-tunnel">Efek Terowongan Kuantum</option>
+                <option value="hambatan-kuantum">Hambatan Kuantum</option>
+            </optgroup>
+        </select>
+
+        <hr>
+
+        <div id="kalkulator-area">
+            
+        </div>
+    </div>
+
+    <div>
+        <a href="fisika.html" class="btn-back" aria-label="Kembali ke halaman Topik Fisika"><i class="fas fa-arrow-left"></i> </a>
+      </div>
+
+    <footer class="footer">
+         <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+    </footer>
+
+    <script src="fisikamodern.js"></script>
+</body>
+</html>

@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antikythera | Kontak</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+
+    body {
+      background-image: url("https://raw.githubusercontent.com/Fahmi25-cmd/Antykithera/main/background.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+
+    .navbar {
+      background-color: #0b2c66;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      position: sticky;     
+      top: 0;               
+      left: 0;
+      right: 0;
+      z-index: 100;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      font-family: 'Montserrat', sans-serif;
+}
+
+    .logo {
+      font-size: 1.8em;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .logo .antiky {
+      color: #ffd700;
+    }
+
+    .logo .thera {
+      color: #dce6ff;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffd700;
+    }
+
+    main.kontak {
+      max-width: 700px;
+      margin: auto;
+      padding: 2rem;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+}
+
+    .kontak-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .kontak-container h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      color: #f0c000;
+    }
+
+    .kontak-container > p {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .kontak-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .kontak-form input,
+    .kontak-form textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .kontak-form input::placeholder,
+    .kontak-form textarea::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .kontak-form input:focus,
+    .kontak-form textarea:focus {
+      outline: none;
+      border-color: #f0c000;
+      box-shadow: 0 0 10px rgba(240, 192, 0, 0.4);
+    }
+
+    .kontak-form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .rating-container {
+      margin: 1rem 0;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .rating-container label {
+      display: block;
+      margin-bottom: 1rem;
+      font-weight: 500;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .star-rating {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .star {
+      font-size: 50px;
+      color: #555;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      user-select: none;
+    }
+
+    .star:hover {
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    .star.active {
+      color: #f0c000;
+      text-shadow: 0 0 15px rgba(240, 192, 0, 0.6);
+    }
+
+    .star.hover {
+      color: #ffd700;
+    }
+
+    .rating-info {
+      text-align: center;
+      min-height: 30px;
+    }
+
+    .rating-text {
+      display: inline-block;
+      color: #f0c000;
+      font-weight: 600;
+      font-size: 1.1rem;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    }
+
+    .rating-text.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .kontak-form button {
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #f0c000 0%, #ffaa00 100%);
+      color: #1e3c72;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .kontak-form button:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(240, 192, 0, 0.5);
+    }
+
+    .kontak-form button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .pesan-status {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: 500;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+
+    footer {
+      background-color: #0a2455;
+      color: #ddd;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      margin-top: auto;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    @media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 12px 15px;
+    gap: 8px;
+  }
+
+  .logo {
+    font-size: 1.5em;
+  }
+
+  .nav-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 0.85em;
+  }
+
+  main.kontak {
+    margin: auto;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .kontak-container {
+    padding: 1.5rem;
+    border-radius: 15px;
+    width: 100%;
+  }
+
+  .kontak-container h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .kontak-container > p {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .kontak-form {
+    gap: 1rem;
+  }
+
+  .kontak-form input,
+  .kontak-form textarea {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  .rating-container {
+    padding: 1rem;
+  }
+
+  .rating-container label {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .star {
+    font-size: 40px;
+  }
+
+  .rating-text {
+    font-size: 0.95rem;
+  }
+
+  .kontak-form textarea {
+    min-height: 100px;
+  }
+
+  .kontak-form button {
+    padding: 0.9rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  footer {
+    padding: 15px;
+    font-size: 0.85em;
+  }
+
+  .tips-text {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    padding: 10px 12px;
+  }
+
+  .logo {
+    font-size: 1.3em;
+  }
+
+  .nav-links {
+    gap: 10px;
+    font-size: 0.8em;
+  }
+
+  main.kontak {
+    padding: 0.5rem;
+  }
+
+  .kontak-container {
+    padding: 1.2rem;
+    border-radius: 12px;
+  }
+
+  .kontak-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .kontak-container > p {
+    font-size: 0.85rem;
+  }
+
+  .star {
+    font-size: 35px;
+  }
+
+  .tips-text {
+    display: none;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <span class="antiky">Antiky</span><span class="thera">thera</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+        <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+        <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="kontak">
+    <div class="kontak-container">
+      <h1>Hubungi Kami</h1>
+      <p>Jika Anda memiliki pertanyaan, saran, atau ingin berkolaborasi — kirimkan pesan Anda di bawah ini.</p>
+
+      <form class="kontak-form" id="kontakForm">
+        <input type="text" id="nama" name="nama" placeholder="Nama Anda" required />
+        <input type="email" id="email" name="email" placeholder="Email Anda" required />
+        
+        <div class="rating-container">
+          <label>Berikan Rating Anda:</label>
+          <div class="star-rating">
+            <span class="star" data-rating="1">★</span>
+            <span class="star" data-rating="2">★</span>
+            <span class="star" data-rating="3">★</span>
+            <span class="star" data-rating="4">★</span>
+            <span class="star" data-rating="5">★</span>
+          </div>
+          <div class="rating-info">
+            <span class="rating-text"></span>
+          </div>
+        </div>
+
+        <textarea id="pesan" name="pesan" rows="5" placeholder="Tulis pesan Anda..." required></textarea>
+        <button type="submit" id="submitBtn">Kirim Pesan</button>
+      </form>
+
+      <div id="pesanStatus" class="pesan-status"></div>
+      
+      <div class="tips-text" style="text-align: center; margin-top: 15px; font-size: 12px; opacity: 0.7;">
+  💡     Tips: Tekan <strong>Enter</strong> di kolom nama/email atau <strong>Ctrl+Enter</strong> di pesan untuk kirim cepat
+       </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    const PUBLIC_KEY = 'MY5RpO9h4YZavsfeV';
+    const SERVICE_ID = 'service_rp858jc';
+    const TEMPLATE_ID = 'template_k9hiv9b';
+
+    emailjs.init(PUBLIC_KEY);
+
+    let selectedRating = 0;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const fadeElements = document.querySelectorAll(
+        ".kontak-container h1, .kontak-container > p, .kontak-form, footer"
+      );
+
+      fadeElements.forEach((el, i) => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(40px)";
+        el.style.transition = "all 0.8s ease";
+
+        setTimeout(() => {
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+        }, 150 * i);
+      });
+    });
+
+    const stars = document.querySelectorAll(".star");
+    const ratingText = document.querySelector(".rating-text");
+    const starRating = document.querySelector(".star-rating");
+
+    function getRatingInfo(rating) {
+      const info = {
+        1: { kategori: "Kritik", text: "1 Bintang - Kritik", emoji: "😞" },
+        2: { kategori: "Kurang Puas", text: "2 Bintang - Kurang Puas", emoji: "😕" },
+        3: { kategori: "Saran", text: "3 Bintang - Saran", emoji: "😐" },
+        4: { kategori: "Puas", text: "4 Bintang - Puas", emoji: "😊" },
+        5: { kategori: "Pujian", text: "5 Bintang - Pujian", emoji: "🤩" }
+      };
+      return info[rating] || { kategori: "", text: "", emoji: "" };
+    }
+
+    function updateStars(rating) {
+      stars.forEach((star, index) => {
+        if (index < rating) {
+          star.classList.add("active");
+        } else {
+          star.classList.remove("active");
+        }
+      });
+    }
+
+    stars.forEach(star => {
+      star.addEventListener("click", () => {
+        selectedRating = parseInt(star.dataset.rating);
+        updateStars(selectedRating);
+        
+        const info = getRatingInfo(selectedRating);
+        ratingText.textContent = `${info.emoji} ${info.text}`;
+        ratingText.classList.add("show");
+      });
+      
+      star.addEventListener("mouseenter", () => {
+        const hoverRating = parseInt(star.dataset.rating);
+        stars.forEach((s, index) => {
+          if (index < hoverRating) {
+            s.classList.add("hover");
+          } else {
+            s.classList.remove("hover");
+          }
+        });
+      });
+    });
+
+    starRating.addEventListener("mouseleave", () => {
+      stars.forEach(star => star.classList.remove("hover"));
+    });
+
+    const form = document.getElementById("kontakForm");
+    const statusDiv = document.getElementById("pesanStatus");
+    const submitBtn = document.getElementById("submitBtn");
+
+    function handleSubmit(e) {
+      if (e) e.preventDefault();
+
+      const nama = document.getElementById("nama").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const pesan = document.getElementById("pesan").value.trim();
+
+      if (nama === "" || email === "" || pesan === "") {
+        showStatus("⚠️ Mohon isi semua kolom sebelum mengirim.", "error");
+        return false;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showStatus("⚠️ Format email tidak valid.", "error");
+        return false;
+      }
+
+      if (selectedRating === 0) {
+        showStatus("⚠️ Mohon berikan rating dengan mengklik bintang.", "error");
+        return false;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Mengirim...";
+      showStatus("⏳ Mengirim pesan Anda...", "loading");
+
+      const ratingInfo = {
+        1: { kategori: "Kritik", emoji: "😞" },
+        2: { kategori: "Kurang Puas", emoji: "😕" },
+        3: { kategori: "Saran", emoji: "😐" },
+        4: { kategori: "Puas", emoji: "😊" },
+        5: { kategori: "Pujian", emoji: "🤩" }
+      };
+      
+      const info = ratingInfo[selectedRating];
+      const stars = "⭐".repeat(selectedRating);
+
+      const templateParams = {
+        from_name: nama,
+        from_email: email,
+        message: pesan,
+        kategori: info.kategori,
+        rating: selectedRating.toString(),
+        stars: stars
+      };
+      
+      console.log('Sending with params:', templateParams);
+
+      emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
+        .then(
+          (response) => {
+            console.log('SUCCESS!', response.status, response.text);
+            showStatus(`✅ Pesan berhasil dikirim! Terima kasih atas ${info.kategori.toLowerCase()} Anda. ${info.emoji}`, "success");
+
+            form.reset();
+            selectedRating = 0;
+            document.querySelectorAll(".star").forEach(star => star.classList.remove("active"));
+            ratingText.classList.remove("show");
+            ratingText.textContent = "";
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Kirim Pesan";
+            submitBtn.style.transform = "";
+          },
+          (error) => {
+            console.error('FAILED...', error);
+            let errorMsg = "❌ Gagal mengirim pesan. Silakan coba lagi.";
+            
+            if (error.status === 400) {
+              errorMsg = "❌ Template EmailJS belum dikonfigurasi dengan benar.";
+            } else if (!navigator.onLine) {
+              errorMsg = "❌ Tidak ada koneksi internet.";
+            }
+            
+            showStatus(errorMsg, "error");
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Kirim Pesan";
+            submitBtn.style.transform = "";
+          }
+        );
+      
+      return false;
+    }
+
+    form.addEventListener("submit", handleSubmit);
+
+    const pesanTextarea = document.getElementById("pesan");
+    pesanTextarea.addEventListener("keydown", (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+        e.preventDefault();
+        handleSubmit();
+      }
+    });
+
+    function showStatus(message, type) {
+      statusDiv.textContent = message;
+      statusDiv.style.visibility = "visible";
+      statusDiv.style.opacity = "1";
+      statusDiv.style.transform = "translateY(0)";
+
+      if (type === "error") {
+        statusDiv.style.color = "#ff5555";
+        statusDiv.style.backgroundColor = "rgba(255, 85, 85, 0.15)";
+      } else if (type === "success") {
+        statusDiv.style.color = "#22bb33";
+        statusDiv.style.backgroundColor = "rgba(34, 187, 51, 0.15)";
+      } else if (type === "loading") {
+        statusDiv.style.color = "#ffaa00";
+        statusDiv.style.backgroundColor = "rgba(255, 170, 0, 0.15)";
+      }
+
+      if (type !== "loading") {
+        setTimeout(() => {
+          statusDiv.style.opacity = "0";
+          statusDiv.style.transform = "translateY(10px)";
+          setTimeout(() => {
+            statusDiv.style.visibility = "hidden";
+          }, 400);
+        }, 5000);
+      }
+    }
+
+    const inputs = document.querySelectorAll(".kontak-form input, .kontak-form textarea");
+    inputs.forEach(input => {
+      input.addEventListener("focus", () => {
+        input.style.borderColor = "#f0c000";
+        input.style.boxShadow = "0 0 10px rgba(240,192,0,0.4)";
+      });
+
+      input.addEventListener("blur", () => {
+        input.style.borderColor = "rgba(255, 255, 255, 0.2)";
+        input.style.boxShadow = "none";
+      });
+
+      if (input.tagName === "INPUT") {
+        input.addEventListener("keypress", (e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            handleSubmit();
+          }
+        });
+      }
+    });
+
+    submitBtn.addEventListener("mouseenter", () => {
+      if (!submitBtn.disabled) {
+        submitBtn.style.transform = "translateY(-3px)";
+        submitBtn.style.boxShadow = "0 8px 25px rgba(240, 192, 0, 0.5)";
+      }
+    });
+
+    submitBtn.addEventListener("mouseleave", () => {
+      if (!submitBtn.disabled) {
+        submitBtn.style.transform = "translateY(0)";
+        submitBtn.style.boxShadow = "none";
+      }
+    });
+  </script>
+</body>
+</html>

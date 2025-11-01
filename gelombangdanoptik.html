@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antikythera | Fisika | Gelombang & Optik</title>
+    <link rel="stylesheet" href="Antykithera.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <span class="antiky">Antiky</span><span class="thera">thera</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+            <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+            <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+        </ul>
+    </nav>
+
+    <div class="callc">
+        <h1>Mari Berhitung</h1>
+        <p>Pilih topik perhitungan gelombang atau optik di bawah ini.</p>
+
+        <label for="pilih-topik">Pilih Materi Gelombang & Optik:</label>
+        <select id="pilih-topik" onchange="tampilkanKalkulator()">
+            <option value="">--Pilih--</option>
+
+            <optgroup label="A. Gelombang Dasar">
+                <option value="persamaan-gelombang">Persamaan Gelombang</option>
+                <option value="kecepatan-gelombang">Kecepatan Gelombang</option>
+                <option value="frekuensi">Frekuensi</option>
+                <option value="periode">Periode</option>
+                <option value="panjang-gelombang">Panjang Gelombang</option>
+                <option value="amplitudo">Amplitudo</option>
+                <option value="energi-gelombang">Energi Gelombang</option>
+                <option value="intensitas-gelombang">Intensitas Gelombang</option>
+                <option value="daya-gelombang">Daya Gelombang</option>
+            </optgroup>
+
+            <optgroup label="B. Gelombang Suara">
+                <option value="kecepatan-suara">Kecepatan Gelombang Suara</option>
+                <option value="taraf-intensitas">Taraf Intensitas Bunyi (dB)</option>
+                <option value="resonansi-tabung">Resonansi Tabung Udara</option>
+                <option value="frekuensi-resonansi">Frekuensi Resonansi</option>
+                <option value="efek-doppler">Efek Doppler</option>
+                <option value="interferensi-bunyi">Interferensi Bunyi</option>
+                <option value="pembentukan-beat">Pembentukan Beat</option>
+            </optgroup>
+
+            <optgroup label="C. Gelombang Cahaya">
+                <option value="kecepatan-cahaya">Kecepatan Cahaya</option>
+                <option value="panjang-gelombang-cahaya">Panjang Gelombang Cahaya</option>
+                <option value="frekuensi-cahaya">Frekuensi Cahaya</option>
+                <option value="energi-foton">Energi Foton</option>
+                <option value="indeks-bias">Indeks Bias</option>
+                <option value="pembiasan">Pembiasan (Hukum Snellius)</option>
+                <option value="pemantulan">Pemantulan Cahaya</option>
+                <option value="sudut-kritis">Sudut Kritis</option>
+                <option value="pembelokan-total">Pembelokan Total Dalam</option>
+            </optgroup>
+
+            <optgroup label="D. Optika Geometri">
+                <option value="cermin-datar">Cermin Datar</option>
+                <option value="cermin-lengkung">Cermin Lengkung</option>
+                <option value="lensa-cembung">Lensa Cembung</option>
+                <option value="lensa-cekung">Lensa Cekung</option>
+                <option value="persamaan-lensa">Persamaan Lensa</option>
+                <option value="perbesaran">Perbesaran Bayangan</option>
+                <option value="jarak-benda-bayangan">Jarak Benda dan Bayangan</option>
+            </optgroup>
+
+            <optgroup label="E. Interferensi dan Difraksi">
+                <option value="interferensi-cahaya">Interferensi Cahaya (Young)</option>
+                <option value="jarak-garis-interferensi">Jarak Garis Interferensi</option>
+                <option value="difraksi-celah-tunggal">Difraksi Celah Tunggal</option>
+                <option value="difraksi-celah-ganda">Difraksi Celah Ganda</option>
+                <option value="pola-difraksi">Pola Difraksi</option>
+            </optgroup>
+
+            <optgroup label="F. Alat Optik">
+                <option value="mata">Mata</option>
+                <option value="mikroskop">Mikroskop</option>
+                <option value="teropong-bintang">Teropong Bintang</option>
+                <option value="kamera">Kamera</option>
+                <option value="lup">Lup (Kaca Pembesar)</option>
+                <option value="pembesaran-alat-optik">Perbesaran Alat Optik</option>
+            </optgroup>
+        </select>
+
+        <hr>
+
+        <div id="kalkulator-area">
+            
+        </div>
+    </div>
+
+    <div>
+        <a href="fisika.html" class="btn-back" aria-label="Kembali ke halaman Topik Fisika"><i class="fas fa-arrow-left"></i> </a>
+      </div>
+
+    <footer class="footer">
+         <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+    </footer>
+
+    <script src="gelombangdanoptik.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antikythera | Matematika | Bangun Datar</title>
+    <link rel="stylesheet" href="Antykithera.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+    <nav class="navbar">
+      <div class="logo">
+        <span class="antiky">Antiky</span><span class="thera">thera</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+        <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+        <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+      </ul>
+    </nav>
+    <div class="callc">
+        <h1>Mari Berhitung</h1>
+        <p>Pilih bangun datar yang ingin dihitung, lalu pilih parameter yang ingin dicari.</p>
+
+        <label for="pilih-bangun">Pilih Bangun Datar:</label>
+        <select id="pilih-bangun" onchange="tampilkanKalkulator()">
+            <option value="">--Pilih--</option>
+            <option value="persegi">Persegi</option>
+            <option value="persegi-panjang">Persegi Panjang</option>
+            <option value="lingkaran">Lingkaran</option>
+            <option value="segitiga">Segitiga</option>
+            <option value="jajargenjang">Jajargenjang</option>
+            <option value="trapesium">Trapesium</option>
+            <option value="belah-ketupat">Belah Ketupat</option>
+            <option value="layang-layang">Layang-Layang</option>
+            <option value="segi-n">Segi-n Beraturan</option>
+            <option value="koordinat">Bangun Tak Beraturan (Koordinat)</option>
+        </select>
+
+        <hr>
+
+        <div id="kalkulator-area">
+          
+        </div>
+      </div>
+
+      <div>
+        <a href="matematika.html" class="btn-back" aria-label="Kembali ke halaman Topik Matematika"><i class="fas fa-arrow-left"></i> </a>
+      </div>
+
+    <footer class="footer">
+         <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+    </footer>
+
+    <script src="bangundatar.js">
+    </script>
+</body>
+</html>

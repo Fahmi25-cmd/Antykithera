@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antikythera | Matematika | Aljabar</title>
+    <link rel="stylesheet" href="Antykithera.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />>
+</head>
+<body>
+
+    <nav class="navbar">
+      <div class="logo">
+        <span class="antiky">Antiky</span><span class="thera">thera</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+        <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+        <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+      </ul>
+    </nav>
+
+    <div class="callc">
+        <h1>Mari Berhitung</h1>
+        <p>Pilih jenis fungsi aljabar yang ingin dipelajari atau dihitung.</p>
+
+        <label for="pilih-fungsi">Pilih Jenis Fungsi:</label>
+        <select id="pilih-fungsi">
+            <option value="">--Pilih Fungsi--</option>
+
+            <optgroup label="A. Fungsi Polinomial">
+                <option value="linear">Fungsi Linear</option>
+                <option value="kuadrat">Fungsi Kuadrat</option>
+                <option value="kubik">Fungsi Kubik</option>
+                <option value="polinomial">Fungsi Polinomial Umum</option>
+            </optgroup>
+
+            <optgroup label="B. Fungsi Rasional dan Akar">
+                <option value="rasional">Fungsi Rasional</option>
+                <option value="akar">Fungsi Akar</option>
+                <option value="pangkat">Fungsi Pangkat</option>
+            </optgroup>
+
+            <optgroup label="C. Fungsi Eksponensial dan Logaritma">
+                <option value="eksponensial">Fungsi Eksponensial</option>
+                <option value="logaritma">Fungsi Logaritma</option>
+            </optgroup>
+
+            <optgroup label="D. Fungsi Trigonometri">
+                <option value="sin">Fungsi Sinus</option>
+                <option value="cos">Fungsi Cosinus</option>
+                <option value="tan">Fungsi Tangen</option>
+                <option value="cot">Fungsi Cotangen</option>
+                <option value="sec">Fungsi Secan</option>
+                <option value="csc">Fungsi Cosecan</option>
+            </optgroup>
+
+            <optgroup label="E. Fungsi Invers dan Komposisi">
+                <option value="invers">Fungsi Invers</option>
+                <option value="komposisi">Fungsi Komposisi</option>
+            </optgroup>
+
+            <optgroup label="F. Fungsi Khusus">
+                <option value="mutlak">Fungsi Nilai Mutlak</option>
+                <option value="signum">Fungsi Signum</option>
+                <option value="tangga">Fungsi Tangga</option>
+                <option value="piecewise">Fungsi Bertahap</option>
+                <option value="modulus">Fungsi Modulus</option>
+            </optgroup>
+
+            <optgroup label="G. Fungsi Khusus Lanjutan">
+                <option value="identitas">Fungsi Identitas</option>
+                <option value="konstan">Fungsi Konstan</option>
+                <option value="reciprocal">Fungsi Resiprokal</option>
+                <option value="mutlak-kuadrat">Fungsi Nilai Mutlak Kuadrat</option>
+            </optgroup>
+
+            <optgroup label="H. Fungsi Transendental">
+                <option value="eksponensial-natural">Eksponensial Natural</option>
+                <option value="log-natural">Logaritma Natural</option>
+                <option value="trig-invers">Fungsi Trigonometri Invers</option>
+                <option value="hiperbolik">Fungsi Hiperbolik</option>
+            </optgroup>
+        </select>
+
+        <hr>
+
+        <div id="kalkulator-area">
+            
+        </div>
+    </div>
+
+    <div>
+        <a href="matematika.html" class="btn-back" aria-label="Kembali ke halaman Topik Matematika"><i class="fas fa-arrow-left"></i> </a>
+      </div>
+
+    <footer class="footer">
+        <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+    </footer>
+
+    <script src="aljabar.js"></script>
+</body>
+</html>

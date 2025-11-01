@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antikythera | Fisika | Elektromagnetisme</title>
+    <link rel="stylesheet" href="Antykithera.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <span class="antiky">Antiky</span><span class="thera">thera</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+            <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+            <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+        </ul>
+    </nav>
+
+    <div class="callc">
+        <h1>Mari Berhitung</h1>
+        <p>Pilih topik perhitungan elektromagnetisme yang ingin digunakan.</p>
+
+        <label for="pilih-topik">Pilih Rumus Elektromagnetisme:</label>
+        <select id="pilih-topik" onchange="tampilkanKalkulator()">
+            <option value="">--Pilih--</option>
+
+            <option value="hukum-coulomb">Hukum Coulomb</option>
+            <option value="medan-listrik">Medan Listrik</option>
+            <option value="potensial-listrik">Potensial Listrik</option>
+            <option value="energi-potensial-listrik">Energi Potensial Listrik</option>
+            <option value="fluks-listrik">Fluks Listrik</option>
+            <option value="hukum-gauss">Hukum Gauss</option>
+
+            <option value="kapasitansi">Kapasitansi</option>
+            <option value="energi-kapasitor">Energi pada Kapasitor</option>
+            <option value="kapasitor-seri">Kapasitor Seri</option>
+            <option value="kapasitor-paralel">Kapasitor Paralel</option>
+
+            <option value="arus-listrik">Arus Listrik</option>
+            <option value="hambatan">Hambatan Listrik</option>
+            <option value="hukum-ohm">Hukum Ohm</option>
+            <option value="daya-listrik">Daya Listrik</option>
+            <option value="energi-listrik">Energi Listrik</option>
+
+            <option value="rangkaian-seri">Rangkaian Seri</option>
+            <option value="rangkaian-paralel">Rangkaian Paralel</option>
+            <option value="rangkaian-campuran">Rangkaian Campuran</option>
+            <option value="tegangan">Tegangan</option>
+
+            <option value="gaya-magnetik">Gaya Magnetik</option>
+            <option value="medan-magnetik">Medan Magnetik</option>
+            <option value="hukum-biotsavart">Hukum Biot–Savart</option>
+            <option value="gaya-lorentz">Gaya Lorentz</option>
+            <option value="gaya-pada-kawat">Gaya pada Kawat Berarus</option>
+            <option value="hukum-ampere">Hukum Ampere</option>
+
+            <!-- 🔹 INDUKSI ELEKTROMAGNETIK -->
+            <option value="hukum-faraday">Hukum Faraday</option>
+            <option value="ggl-induksi">GGL Induksi</option>
+            <option value="hukum-lenz">Hukum Lenz</option>
+            <option value="induktansi">Induktansi</option>
+            <option value="energi-induktor">Energi pada Induktor</option>
+
+            <!-- 🔹 RANGKAIAN ARUS BOLAK-BALIK (AC) -->
+            <option value="arus-ac">Arus Bolak-Balik</option>
+            <option value="tegangan-ac">Tegangan AC</option>
+            <option value="impedansi">Impedansi</option>
+            <option value="resonansi">Resonansi</option>
+            <option value="daya-ac">Daya AC</option>
+
+            <!-- 🔹 GELOMBANG ELEKTROMAGNETIK -->
+            <option value="persamaan-gelombang">Persamaan Gelombang</option>
+            <option value="kecepatan-gelombang">Kecepatan Gelombang</option>
+            <option value="intensitas-gelombang">Intensitas Gelombang</option>
+            <option value="panjang-gelombang">Panjang Gelombang</option>
+            <option value="frekuensi-gelombang">Frekuensi Gelombang</option>
+
+            
+            <option value="energi-magnetik">Energi Magnetik</option>
+            <option value="momentum-magnetik">Momen Magnetik</option>
+            <option value="gaya-pada-partikel">Gaya pada Partikel Bermuatan</option>
+        </select>
+
+        <hr>
+
+        <div id="kalkulator-area">
+            
+        </div>
+    </div>
+
+    <div>
+        <a href="fisika.html" class="btn-back" aria-label="Kembali ke halaman Topik Fisika"><i class="fas fa-arrow-left"></i> </a>
+      </div>
+
+    <footer class="footer">
+         <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+    </footer>
+
+    <script src="elektromagnetisme.js"></script>
+</body>
+</html>

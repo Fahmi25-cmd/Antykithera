@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antikythera | Fisika | Fisika Kuantum</title>
+    <link rel="stylesheet" href="Antykithera.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <span class="antiky">Antiky</span><span class="thera">thera</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+            <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+            <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+        </ul>
+    </nav>
+
+    <div class="callc">
+        <h1>Mari Berhitung</h1>
+        <p>Pilih rumus perhitungan Fisika Kuantum yang ingin digunakan.</p>
+
+        <label for="pilih-topik">Pilih Rumus Fisika Kuantum:</label>
+        <select id="pilih-topik" onchange="tampilkanKalkulator()">
+            <option value="">--Pilih--</option>
+
+            <option value="energi-foton">Energi Foton</option>
+            <option value="frekuensi-foton">Frekuensi Foton</option>
+            <option value="panjang-gelombang-de-broglie">Panjang Gelombang de Broglie</option>
+            <option value="momentum-foton">Momentum Foton</option>
+            <option value="energi-partikel">Energi Partikel</option>
+
+            <option value="efek-fotoelektrik">Efek Fotoelektrik</option>
+            <option value="energi-kinetik-fotoelektron">Energi Kinetik Fotoelektron</option>
+            <option value="fungsi-kerja-logam">Fungsi Kerja Logam</option>
+            <option value="energi-ambang">Energi Ambang</option>
+
+            <option value="energi-tingkat-atom-hidrogen">Energi Tingkat Atom Hidrogen</option>
+            <option value="transisi-atom-hidrogen">Transisi Atom Hidrogen</option>
+            <option value="frekuensi-spektrum-hidrogen">Frekuensi Spektrum Hidrogen</option>
+            <option value="panjang-gelombang-spektrum-hidrogen">Panjang Gelombang Spektrum Hidrogen</option>
+
+            <option value="energi-partikel-kotak-1d">Partikel dalam Kotak 1D</option>
+            <option value="energi-partikel-kotak-3d">Partikel dalam Kotak 3D</option>
+            <option value="energi-osilator-harmonik">Osilator Harmonik Kuantum</option>
+            <option value="energi-spin-elektron">Energi Spin Elektron</option>
+
+            <option value="ketidakpastian-posisi-momentum">Ketidakpastian Posisi dan Momentum</option>
+            <option value="ketidakpastian-energi-waktu">Ketidakpastian Energi dan Waktu</option>
+            <option value="efek-compton">Efek Compton</option>
+            <option value="panjang-gelombang-compton">Panjang Gelombang Compton</option>
+            <option value="energi-foton-terhambur">Energi Foton Terhambur</option>
+            <option value="energi-recoil-elektron">Energi Recoil Elektron</option>
+
+            <option value="radiasi-planck">Radiasi Planck</option>
+            <option value="energi-foton-temperatur">Energi Foton Berdasarkan Temperatur</option>
+            <option value="intensitas-spektrum">Intensitas Spektrum Radiasi</option>
+
+            <option value="energi-ikatan">Energi Ikatan Molekul</option>
+            <option value="energi-ionisasi">Energi Ionisasi</option>
+            <option value="energi-transisi-elektron">Energi Transisi Elektron</option>
+            <option value="panjang-gelombang-transisi">Panjang Gelombang Transisi</option>
+        </select>
+
+        <hr>
+
+        <div id="kalkulator-area">
+            
+        </div>
+    </div>
+
+    <div>
+        <a href="fisika.html" class="btn-back" aria-label="Kembali ke halaman Topik Fisika"><i class="fas fa-arrow-left"></i> </a>
+      </div>
+
+    <footer class="footer">
+         <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+    </footer>
+
+    <script src="fisikakuantum.js"></script>
+</body>
+</html>

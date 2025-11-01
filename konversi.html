@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antikythera | Layanan | Konversi</title>
+    <link rel="stylesheet" href="Antykithera.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        .btn-back {
+          position: fixed; 
+          bottom: 80px;
+          right: 30px;
+          z-index: 1000; 
+
+          display: flex; 
+          align-items: center;
+          gap: 12px;
+          padding: 22px 45px;
+          background-color: #f1f1f1;
+          color: #333;
+          text-decoration: none;
+          border-radius: 30px;
+          font-weight: 700;
+          transition: all 0.3s ease;
+          box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4); 
+          font-size: 1em;
+          border: 2px solid #3498db;
+      }
+
+      .btn-back::after {
+          content: "KEMBALI";
+          margin-left: 5px;
+          font-size: 1.5em;
+          color: #3498db;
+          font-weight: 700;
+      }
+
+      .btn-back i {
+          font-size: 1.8em;
+          color: #3498db;
+      }
+
+      .btn-back:hover {
+          background-color: #e0e0e0;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+          transform: translateY(-4px);
+      }
+      .callc {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding-bottom: 100px;
+      }
+
+        #kalkulator-area {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        #kalkulator-area p {
+            display: flex; 
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        #kalkulator-area p label {
+            flex-basis: 40%;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        #kalkulator-area p input,
+        #kalkulator-area p select {
+            flex-basis: 55%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #kalkulator-area h2, #kalkulator-area h3 {
+            width: 100%;
+            text-align: center; 
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+      <div class="logo">
+        <span class="antiky">Antiky</span><span class="thera">thera</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+        <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+        <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+      </ul>
+    </nav>
+    
+    <div class="wrapper-content"> <div class="callc">
+            <h1>Mari Berhitung</h1>
+            <p>Pilih jenis besaran yang ingin dihitung.</p>
+
+            <label for="pilih-besaran">Pilih Besaran:</label>
+            <select id="pilih-besaran" onchange="tampilkanKalkulator()">
+                <option value="">--Pilih--</option>
+
+                <optgroup label="A. Besaran Pokok SI">
+                <option value="panjang">Panjang</option>
+                <option value="massa">Massa</option>
+                <option value="waktu">Waktu</option>
+                <option value="arus-listrik">Arus Listrik</option>
+                <option value="suhu">Suhu</option>
+                <option value="jumlah-zat">Jumlah Zat</option>
+                <option value="intensitas-cahaya">Intensitas Cahaya</option>
+                </optgroup>
+
+                <optgroup label="B. Besaran Turunan yang Umum Dikenal">
+                <option value="luas">Luas</option>
+                <option value="volume">Volume</option>
+                <option value="kecepatan">Kecepatan</option>
+                <option value="percepatan">Percepatan</option>
+                <option value="gaya">Gaya</option>
+                <option value="tekanan">Tekanan</option>
+                <option value="energi">Energi</option>
+                <option value="daya">Daya</option>
+                <option value="usaha">Usaha</option>
+                <option value="berat">Berat</option>
+                <option value="densitas">Densitas (Massa Jenis)</option>
+                <option value="frekuensi">Frekuensi</option>
+                <option value="tegangan-listrik">Tegangan Listrik</option>
+                <option value="hambatan-listrik">Hambatan Listrik</option>
+                <option value="muatan-listrik">Muatan Listrik</option>
+                </optgroup>
+
+                <optgroup label="C. Besaran Non-SI Umum">
+                <option value="uang">Uang</option>
+                </optgroup>
+            </select>
+
+            <hr>
+
+            <div id="kalkulator-area">
+                </div>
+        </div>
+    </div>
+
+    <div>
+        <a href="layanan.html" class="btn-back" aria-label="Kembali ke halaman layanan"><i class="fas fa-arrow-left"></i> </a>
+      </div>
+
+    <footer class="footer">
+         <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+    </footer>
+
+    <script src="konversi.js"></script>
+</body>
+</html>

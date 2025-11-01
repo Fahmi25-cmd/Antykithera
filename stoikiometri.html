@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antikythera | Kimia | Stoikiometri</title>
+  <link rel="stylesheet" href="Antykithera.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">
+      <span class="antiky">Antiky</span><span class="thera">thera</span>
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+        <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+        <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+    </ul>
+  </nav>
+
+  <div class="callc">
+    <h1>Mari Berhitung</h1>
+    <p>Pilih topik perhitungan stoikiometri di bawah ini.</p>
+
+    <label for="pilih-topik">Pilih Materi Stoikiometri:</label>
+    <select id="pilih-topik" onchange="tampilkanKalkulator()">
+      <option value="">--Pilih--</option>
+
+      <optgroup label="A. Dasar Perhitungan Zat">
+        <option value="massa-molar">Massa Molar</option>
+        <option value="jumlah-mol">Jumlah Mol</option>
+        <option value="massa-zat">Massa Zat</option>
+        <option value="volume-gas">Volume Gas (STP)</option>
+        <option value="jumlah-partikel">Jumlah Partikel (Atom/Molekul)</option>
+        <option value="mol-dari-partikel">Mol dari Jumlah Partikel</option>
+        <option value="mol-dari-volume">Mol dari Volume Gas</option>
+      </optgroup>
+
+      <optgroup label="B. Persamaan Reaksi">
+        <option value="penyetaraan-reaksi">Penyetaraan Reaksi Kimia</option>
+        <option value="hubungan-mol-reaksi">Hubungan Mol dalam Reaksi</option>
+        <option value="pereaksi-pembatas">Pereaksi Pembatas</option>
+        <option value="pereaksi-berlebih">Pereaksi Berlebih</option>
+        <option value="hasil-teoritis">Hasil Teoritis</option>
+        <option value="hasil-sebenarnya">Hasil Sebenarnya</option>
+        <option value="persentase-hasil">Persentase Hasil Reaksi</option>
+      </optgroup>
+
+      <optgroup label="C. Gas dan Stoikiometri">
+        <option value="pv-nrt">Hukum Gas Ideal (PV=nRT)</option>
+        <option value="volume-gas-reaksi">Perbandingan Volume Gas Reaksi</option>
+        <option value="mol-dari-hukum-gas">Perhitungan Mol dari Hukum Gas</option>
+        <option value="densitas-gas">Densitas Gas</option>
+        <option value="massa-molar-gas">Massa Molar Gas dari PV=nRT</option>
+      </optgroup>
+
+      <optgroup label="D. Larutan">
+        <option value="mol-dari-volume-dan-molaritas">Mol dari Volume dan Molaritas</option>
+        <option value="molaritas-larutan">Molaritas Larutan</option>
+        <option value="pengenceran-larutan">Pengenceran Larutan (M₁V₁ = M₂V₂)</option>
+        <option value="fraksi-mol">Fraksi Mol</option>
+        <option value="massa-jenis-larutan">Massa Jenis Larutan</option>
+        <option value="persen-massa">Persen Massa (% w/w)</option>
+        <option value="ppm-larutan">Konsentrasi ppm</option>
+        <option value="molalitas-larutan">Molalitas</option>
+      </optgroup>
+
+      <optgroup label="E. Konsep Tambahan">
+        <option value="pereaksi-lengkap">Pereaksi Lengkap</option>
+        <option value="stoikiometri-padat-cair-gas">Stoikiometri Padat–Cair–Gas</option>
+        <option value="perbandingan-zat">Perbandingan Zat Berdasarkan Reaksi</option>
+        <option value="konversi-unit">Konversi Satuan Kimia (mol–g–L–atom)</option>
+      </optgroup>
+    </select>
+
+    <hr>
+
+    <div id="kalkulator-area">
+      
+    </div>
+  </div>
+
+  <div>
+        <a href="kimia.html" class="btn-back" aria-label="Kembali ke halaman Topik Kimia"><i class="fas fa-arrow-left"></i> </a>
+      </div>
+
+  <footer class="footer">
+     <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+  </footer>
+
+  <script src="stoikiometri.js"></script>
+</body>
+</html>

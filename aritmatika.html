@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antikythera | Matematika | Aritmatika</title>
+    <link rel="stylesheet" href="Antykithera.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+    <nav class="navbar">
+      <div class="logo">
+        <span class="antiky">Antiky</span><span class="thera">thera</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="tentang.html"><i class="fas fa-info-circle"></i> Tentang</a></li>
+        <li><a href="layanan.html"><i class="fas fa-cogs"></i> Layanan</a></li>
+        <li><a href="kontak.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+      </ul>
+    </nav>
+    <div class="callc">
+        <h1>Mari Berhitung</h1>
+        <p>Pilih materi aritmetika yang ingin dihitung, lalu pilih parameter yang ingin dicari.</p>
+
+        <label for="pilih-bangun">Pilih Materi Aritmetika:</label>
+        <select id="pilih-bangun" onchange="tampilkanKalkulator()">
+            <option value="">--Pilih--</option>
+            <option value="penjumlahan">Penjumlahan</option>
+            <option value="pengurangan">Pengurangan</option>
+            <option value="perkalian">Perkalian</option>
+            <option value="pembagian">Pembagian</option>
+            <option value="perpangkatan">Perpangkatan</option>
+            <option value="akar-kuadrat">Akar Kuadrat</option>
+            <option value="logaritma">Logaritma</option>
+            <option value="barisan-aritmetika">Suku ke-n (an) Aritmetika</option>
+            <option value="deret-aritmetika">Jumlah n Suku (Sn) Aritmetika</option>
+            <option value="beda-aritmetika">Beda (b) Aritmetika</option> </select>
+
+        <hr>
+
+        <div id="kalkulator-area">
+          
+        </div>
+      </div>
+
+      <div>
+        <a href="matematika.html" class="btn-back" aria-label="Kembali ke halaman Topik Matematika"><i class="fas fa-arrow-left"></i> </a>
+      </div>
+
+    <footer class="footer">
+        <p>© 2025 Antikythera — Memudahkan manusia berhitung.</p>
+    </footer>
+
+    <script src="aritmatika.js">
+    </script>
+</body>
+</html>
